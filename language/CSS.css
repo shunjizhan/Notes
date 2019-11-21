@@ -1,0 +1,369 @@
+/*HTML elements can also refer to more than one class.*/
+/*In the example below, the <p> element will be styled according to class="center" and to class="large":*/
+<p class="center large">This paragraph refers to two classes.</p>
+/*Note: A class name cannot start with a number!*/
+
+/*grouping selectors*/
+h1, h2, p {
+    text-align: center;
+    color: red;
+}
+
+/*inline style has the highest priority in Cascading Order*/
+<h1 style="color:blue;margin-left:30px;">This is a heading.</h1>
+
+/*############### background ###############*/
+/*
+CSS background properties:
+	- background-color
+	- background-image
+	- background-repeat
+	- background-attachment
+	- background-position
+*/
+body {	
+    background-image: url("gradient_bg.png");
+    background-repeat: repeat-x; /*repeated only horizontally*/
+}
+
+body {	 
+    background-image: url("img_tree.png");
+    background-repeat: no-repeat;
+    background-position: right top; /* specify the position of the image */
+    background-attachment: fixed; /* specify that the background image should be fixed (will not scroll with the rest of the page)*/
+}
+
+body {	/* short hand (must be in right order. It does not matter if one of the property values is missing) */
+    background: #ffffff url("img_tree.png") no-repeat right top;
+}
+
+/*############### border ###############*/
+/*
+Border:
+    - border-width
+    - border-style (required)
+    - border-color
+*/
+p {
+    border: 5px solid red;
+    border-radius: 5px;
+}
+
+/*############### margin ###############*/
+/*margin properties are used to generate space around elements.*/
+/*
+All the margin properties can have the following values:
+    - auto - the browser calculates the margin
+    - length - specifies a margin in px, pt, cm, etc.
+    - % - specifies a margin in % of the width of the containing element
+    - inherit - specifies that the margin should be inherited from the parent element
+*/
+/*Tip: Negative values are allowed.*/
+p { 
+    margin: 100px 150px 100px 80px; /*上右下左*/
+    margin: 25px 50px 75px;         /*上 左右 下*/
+    margin: 100px 150px;            /*上下 左右*/
+    margin: 100px;                  /*all*/
+    margin: auto;                   /*horizontally center the element within its container
+}*/
+
+/*Top and bottom margins of elements are sometimes collapsed into a single margin that is equal to the largest of the two margins.*/
+
+/*############### padding ###############*/
+/*padding properties are used to generate space around content.*/
+/*
+All the padding properties can have the following values:
+    - length - specifies a padding in px, pt, cm, etc.
+    - % - specifies a padding in % of the width of the containing element
+    - inherit - specifies that the padding should be inherited from the parent element
+*/
+p {
+    padding: 100px 150px 100px 80px; /*上右下左*/
+    padding: 25px 50px 75px;         /*上 左右 下*/
+    padding: 100px 150px;            /*上下 左右*/
+    padding: 100px;                  /*all*/
+}
+
+/*############### height and width ###############*/
+/*
+height and width can have the following values:
+    - auto - the browser calculates the margin (default)
+    - length - specifies a margin in px, pt, cm, etc.
+    - % - specifies % of the containing block.
+*/
+div {
+    height: 100px;
+    width: 500px;
+}
+
+/*
+max(min)-height and max(min)-width can have the following values:
+    - auto - the browser calculates the margin
+    - length - specifies a margin in px, pt, cm, etc.
+    - none - (default)
+*/
+div {
+    max-width: 500px;   /* small window => small div; big window => 500px width*/
+    height: 100px;
+}
+
+/*############### box model ###############*/
+/*
+--------- *outline* ---------
+----------- margin ----------
+----------- border ----------
+---------- padding ----------
+--------- #content# ---------
+---------- padding ----------
+----------- border ----------
+----------- margin ----------
+--------- *outline* ---------
+*/
+/*When you set the width and height properties of an element, you just set the width and height of the content area.*/
+/*Total element width = width + left padding + right padding + left border + right border + left margin + right margin*/
+/*Total element height = height + top padding + bottom padding + top border + bottom border + top margin + bottom margin*/
+
+/*############### outline ###############*/
+/*An outline is a line that is drawn around elements (outside the borders) to make the element "stand out".*/
+p {
+    border: 1px solid black;
+    outline-color: red;
+}
+p.dotted {outline-style: dotted;}
+p.dashed {outline-style: dashed;}
+p.solid {outline-style: solid;}
+
+/*
+outline short-hand:;
+    outline-width
+    outline-style (required)
+    outline-color
+*/
+p {
+    outline: 5px dotted red;
+}
+
+/*############### text ###############*/
+h1 {
+    color: green;
+
+    text-align: center;
+    text-align: left;
+    text-align: right;
+    text-align: justify;   /*each line is stretched so that every line has equal width, and the left and right margins are straight (like in magazines and newspapers)*/
+
+    text-decoration: none;
+    text-decoration: overline;
+    text-decoration: line-through;
+    text-decoration: underline;
+
+    text-transform: uppercase;
+    text-transform: lowercase;
+    text-transform: capitalize; /* Capitalize the first letter of each word */
+
+    text-indent: 50px; /* specify the indentation of the first line of a text */
+
+    letter-spacing: 3px;    /* increase distance between letters */
+    letter-spacing: -3px;   /* decrease distance between letters */
+
+    line-height: 0.8;   /* space between lines */
+
+    direction: rtl;     /* change direction of texts*/
+
+    word-spacing: 10px; /* increase space between words*/
+    word-spacing: -5px; /* decrease space between words*/
+
+    text-shadow: 3px 2px red; /*横 竖 颜色*/
+}
+
+/*############### font ###############*/
+p {
+    font-family: "Times New Roman", Times, serif;
+
+    font-style: normal;
+    font-style: italic;
+    font-style: oblique;
+
+    font-size: 40px;
+    font-size: 2.5em;   /*To allow users to resize the text (in the browser menu), many developers use em instead of pixels. 1em is equal to the current font size.*/
+
+    font-weight: normal;
+    font-weight: bold;
+}
+
+body { font-size: 100%; }
+h1 { font-size: 2.5em; }
+ 
+/*############### font ###############*/
+/*
+    - Font Awesome Icons
+    - Bootstrap Icons
+    - Google Icons
+*/
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<i class="fa fa-cloud"></i>     /* two icons*/
+<i class="fa fa-heart"></i>
+
+/*############### link ###############*/
+/* a:hover MUST come after a:link and a:visited; a:active MUST come after a:hover */
+a:link { color: red; }          /*a normal, unvisited link*/
+a:visited { color: green; }     /*a link the user has visited*/
+a:hover { color: hotpink; }     /*a link when the user mouses over it*/
+a:active { color: blue; }       /*a link the moment it is clicked*/
+
+a:link, a:visited {             /* an advanced button*/
+    background-color: white;
+    color: black;
+    border: 2px solid green;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+a:hover, a:active {
+    background-color: green;
+    color: white;
+}
+
+/*############### list ###############*/
+ul {
+    list-style-type: circle;
+    list-style-type: square;
+    list-style-type: upper-roman;
+    list-style-type: lower-alpha;
+    list-style-image: url('sqpurple.gif');
+
+    list-style-position: inside;   /*specifies whether the list-item markers should appear inside or outside the content flow:*/
+}
+
+/*
+    - list-style-type (if a list-style-image is specified, the value of this property will be displayed if the image for some reason cannot be displayed)
+    - list-style-position (specifies whether the list-item markers should appear inside or outside the content flow)
+    - list-style-image (specifies an image as the list item marker)
+*/
+ul {
+    list-style: square inside url("sqpurple.gif");
+}
+
+ul {
+    border-left: 5px solid red;     /* 整个左边会有一条红色的线 */
+}
+
+/*############### table ###############*/
+
+/*############### display ###############*/
+/*The display property specifies if/how an element is displayed.*/
+/*Every HTML element has a default display value depending on what type of element it is. The default display value for most elements is block or inline.*/
+/*A block-level element always starts on a new line and takes up the full width available (stretches out to the left and right as far as it can).*/
+/*
+    <div>
+    <h1> - <h6>
+    <p>
+    <form>
+    <header>
+    <footer>
+    <section>
+*/
+/*An inline element does not start on a new line and only takes up as much width as necessary.*//*
+    <span>
+    <a>
+    <img>
+*/
+li {   /*making inline <li> elements for horizontal menus:*/
+    display: inline;
+}
+a {
+    display: block;
+}
+/*Note: Setting the display property of an element only changes how the element is displayed, NOT what kind of element it is. So, an inline element with display: block; is not allowed to have other block elements inside it.*/
+h1.hidden {
+    display: none;          /* as if element if not there at all*/
+    visibility: hidden;     /* as if there are something transparent*/
+}
+
+/*############### position ###############*/
+/*Static positioned elements are not affected by the top, bottom, left, and right properties. */
+/*An element with position: static; is not positioned in any special way; it is always positioned according to the normal flow of the page:*/
+div.static {
+    position: static;
+}
+
+/*An element with position: relative; is positioned relative to its normal position.*/
+/*Setting the top, right, bottom, and left properties of a relatively-positioned element will cause it to be adjusted away from its normal position. Other content will not be adjusted to fit into any gap left by the element.*/
+div.relative {
+    position: relative;
+    left: 30px;
+}
+
+/*An element with position: fixed; is positioned relative to the viewport, which means it always stays in the same place even if the page is scrolled. The top, right, bottom, and left properties are used to position the element.*/
+div.fixed {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 300px;
+}
+
+/*An element with position: absolute; is positioned relative to the nearest positioned ancestor (instead of positioned relative to the viewport, like fixed).*/
+/*However; if an absolute positioned element has no positioned ancestors, it uses the document body, and moves along with page scrolling.*/
+/*Note: A "positioned" element is one whose position is anything except static.*/
+<div class="relative">This div element has position: relative;
+  <div class="absolute">This div element has position: absolute;</div>
+</div>
+div.relative {
+    position: relative;
+    width: 400px;
+    height: 200px;
+} 
+div.absolute {
+    position: absolute;
+    top: 80px;
+    right: 0;
+    width: 200px;
+    height: 100px;
+}
+
+img {
+    z-index: -1;
+}
+/*If two positioned elements overlap without a z-index specified, the element positioned last in the HTML code will be shown on top.*/
+
+/*############### overflow ###############*/
+/*Note: The overflow property only works for block elements with a specified height.*/
+div {
+    overflow: auto;         /* If overflow is clipped, a scrollbar should be added to see the rest of the content */
+    overflow: hidden;       /* The overflow is clipped, and the rest of the content will be invisible */
+    overflow: scroll;       /* The overflow is clipped, but a scrollbar is added to see the rest of the content */
+    overflow: visible;      /* Default. The overflow is not clipped. It renders outside the element's box */
+}
+
+div {
+    overflow-x: hidden; /* Hide horizontal scrollbar */
+    overflow-y: scroll; /* Add vertical scrollbar */
+}
+
+/*############### float ###############*/
+/*The float property specifies whether or not an element should float.*/
+img {
+    float: right;
+    margin: 0 0 10px 10px;
+}
+
+/*The clear property is used to control the behavior of floating elements.*/
+/*Elements after a floating element will flow around it. To avoid this, use the clear property.*/
+/*The clear property specifies on which sides of an element floating elements are not allowed to float:*/
+div {
+    clear: left;
+}
+
+/*If an element is taller than the element containing it, and it is floated, it will overflow outside of its container.*/
+/*Then we can add overflow: auto; to the containing element to fix this problem:*/
+.clearfix {
+    overflow: auto;
+}
+.clearfix::after {    /*more modern way to do it*/
+    content: "";
+    clear: both;
+    display: table;
+}
+d
