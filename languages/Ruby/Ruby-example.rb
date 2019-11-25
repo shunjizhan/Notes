@@ -9,7 +9,8 @@ module Menu
       5) Write to File
       6) Read from File
       7) Toggle Status
-      Q) Quit "
+      Q) Quit 
+      "
     end
 
     def show
@@ -19,13 +20,11 @@ module Menu
   end
 
   module Promptable
-
     def prompt(message = "Just the facts, ma'am.", symbol = ':> ')
       print message
       print symbol
       gets.chomp
     end
-
   end
 
   class List
@@ -70,7 +69,7 @@ module Menu
       
 end
 
-  class Task
+class Task
     attr_reader :description
     attr_accessor :completed_status
 
@@ -80,7 +79,7 @@ end
     end
 
     def to_s
-      "#{represent_status} : #{description}"
+      "#{checkbox} : #{description}"
     end
 
     def completed?
@@ -92,19 +91,18 @@ end
     end
 
     def to_machine
-      "#{represent_status}:#{description}"
+      "#{checkbox}:#{description}"
     end
 
     private
 
-    def represent_status
+    def checkbox
       completed? ? '[X]' : '[ ]'
     end
+end
 
-  end
 
-
-  if __FILE__ == $PROGRAM_NAME
+if __FILE__ == $PROGRAM_NAME
     include Promptable
     include Menu
     my_list = List.new
@@ -143,4 +141,4 @@ end
         prompt('Press enter to continue', '')
       end
     puts 'Outro - Thanks for using the menu system!'
-  end
+end
