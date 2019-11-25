@@ -20,27 +20,27 @@ Remember: there's always more than one way to do something in Ruby.
 print "What's your first name?" # (print it)
 puts "shun" # (print it and a newline)
 
-"Eric".reverse #=> "cirE"
-"love".length #=> 4
-"eric".upcase #=> "ERIC" 
-"ERIC".downcase #=> "eric"
+"Eric".reverse  # => "cirE"
+"love".length   # => 4
+"eric".upcase   # => "ERIC" 
+"ERIC".downcase # => "eric"
 
 =begin						=> muti-line comment
 I'm a comment!
 I don't need any # symbols.
 =end
 
-x = gets #=> (intput aaa) => "aaa\n"
-x = x.chomp #=> "aaa"
+x = gets # => (intput aaa) => "aaa\n"
+x = x.chomp # => "aaa"
 
-first_name = "Kevin"		#=> (print with variable)
+first_name = "Kevin"		# => (print with variable)
 puts "Your name is #{first_name}!"
 
 #[.capitalize capitalize first letter and make the rest lowercase]
-"AAA".capitalize #=> "Aaa"
-"aaa".capitalize #=> "Aaa"
-answer.capitalize! #=> (next time when using variable answer => answer.capitalize)(also can use .upcase! ...)
-user_input = gets.chomp.downcase! #=> (this doesn't work!!!)
+"AAA".capitalize   # => "Aaa"
+"aaa".capitalize   # => "Aaa"
+answer.capitalize! # => in place modification
+user_input = gets.chomp.downcase! # => (thisesn't work!!!)
 
 x = "3"
 x.to_i  # int 3
@@ -48,39 +48,39 @@ x.to_i  # int 3
 "hello".each_char {|c| print c, ' ' }
 
 a = "hello "
-a << "world"   #=> "hello world"
-a.concat(33)   #=> "hello world!"
+a << "world"   # => "hello world"
+a.concat(33)   # => "hello world!"
 
 a = "hello there"
-a[1]                   #=> "e"
-a[2, 3]                #=> "llo"
-a[2..3]                #=> "ll"
-a[-3, 2]               #=> "er"
-a[7..-2]               #=> "her"
-a[-4..-2]              #=> "her"
-a[-2..-4]              #=> ""
-a[11, 0]               #=> ""
-a[11]                  #=> nil
-a[12, 0]               #=> nil
-a[12..-1]              #=> nil
+a[1]       # => "e"
+a[2, 3]    # => "llo"
+a[2..3]    # => "ll"
+a[-3, 2]   # => "er"
+a[7..-2]   # => "her"
+a[-4..-2]  # => "her"
+a[-2..-4]  # => ""
+a[11, 0]   # => ""
+a[11]      # => nil
+a[12, 0]   # => nil
+a[12..-1]  # => nil
 
-"hello".gsub(/[aeiou]/, '*')                  #=> "h*ll*"
-"hello".gsub(/([aeiou])/, '<\1>')             #=> "h<e>ll<o>"
-"hello".gsub(/./) {|s| s.ord.to_s + ' '}      #=> "104 101 108 108 111 "
-"hello".gsub(/(?<foo>[aeiou])/, '{\k<foo>}')  #=> "h{e}ll{o}"
-'hello'.gsub(/[eo]/, 'e' => 3, 'o' => '*')    #=> "h3ll*"
+"hello".gsub(/[aeiou]/, '*')                  # => "h*ll*"
+"hello".gsub(/([aeiou])/, '<\1>')             # => "h<e>ll<o>"
+"hello".gsub(/./) {|s| s.ord.to_s + ' '}      # => "104 101 108 108 111 "
+"hello".gsub(/(?<foo>[aeiou])/, '{\k<foo>}')  # => "h{e}ll{o}"
+'hello'.gsub(/[eo]/, 'e' => 3, 'o' => '*')    # => "h3ll*"
 
-"hello".index('e')             #=> 1
-"hello".index('lo')            #=> 3
-"hello".index('a')             #=> nil
-"hello".index(?e)              #=> 1
-"hello".index(/[aeiou]/, -3)   #=> 4
+"hello".index('e')             # => 1
+"hello".index('lo')            # => 3
+"hello".index('a')             # => nil
+"hello".index(?e)              # => 1
+"hello".index(/[aeiou]/, -3)   # => 4
 
-"abcd".insert(0, 'X')    #=> "Xabcd"
-"abcd".insert(3, 'X')    #=> "abcXd"
-"abcd".insert(4, 'X')    #=> "abcdX"
-"abcd".insert(-3, 'X')   #=> "abXcd"
-"abcd".insert(-1, 'X')   #=> "abcdX"
+"abcd".insert(0, 'X')    # => "Xabcd"
+"abcd".insert(3, 'X')    # => "abcXd"
+"abcd".insert(4, 'X')    # => "abcdX"
+"abcd".insert(-3, 'X')   # => "abXcd"
+"abcd".insert(-1, 'X')   # => "abcdX"
 
 ########################### Conditions #############################
 if x < y  # Assumes x and y are defined
@@ -100,8 +100,9 @@ end
 problem = false
 print "Good to go!" unless problem
 
-if string_to_check.include? "substring" #=> (As a general rule, Ruby methods that end with ? evaluate to the boolean values true or false)
-	string_to_change.gsub!(/s/, "th")	#=> (change every 's' to "th")
+# As a general rule, Ruby methods that end with ? evaluate to the boolean values true or false
+if string_to_check.include? "substring"
+	string_to_change.gsub!(/s/, "th")	# change every 's' to "th"
 end
 
 counter = 1
@@ -116,11 +117,11 @@ until i == 6	# i == 6
 end
 puts i
 
-for num in 1...10	#=> print 1-9
+for num in 1...10	# => print 1-9
   puts num
 end
 
-for num in 1..10	#=> print 1-10
+for num in 1..10	# => print 1-10
   puts num
 end
 
@@ -146,7 +147,7 @@ numbers.each do |item|
   puts item
 end
 
-3.times {print "hahaha\n"}	# print hahaha 3 times
+3.times { print "hahaha\n" }	# print hahaha 3 times
 
 text = ["aaa,bbb,ccc"]
 text.split(",")			# ["aaa", "bbb", "ccc"]
@@ -170,7 +171,7 @@ case language     # same as above
 end
 
 ########################### Hash #############################
-hash = {
+_hash = {
   key1 => value1,
   key2 => value2,
   key3 => value3
@@ -199,8 +200,9 @@ colors = colors.sort_by do |color, count|
   count
 end
 
-colors = colors.sort_by { # same as above 
- |color, count|
+# same as above 
+colors = colors.sort_by { 
+  |color, count|
   count
 }
 
@@ -255,9 +257,9 @@ symbol_hash = {
   :one => 1,
 }
 
-:sasquatch.to_s # ==> "sasquatch"
-"sasquatch".to_sym # ==> :sasquatch
-"hello".intern # ==> :hello
+:sasquatch.to_s # => "sasquatch"
+"sasquatch".to_sym # => :sasquatch
+"hello".intern # => :hello
 
 # .push method allows you to add an element to the end of an array!
 numbers = [1, 2, 3, 4, 5, 6]
@@ -269,17 +271,18 @@ numbers.each do |number|
 end
 print evens # prints '[2, 4, 6]'
 
-grades = { alice: 100,
+grades = { 
+  alice: 100,
   bob: 92,
   chris: 95,
   dave: 97
 }
-grades.select {|name, grade| grade < 97} # ==> {:bob=>92, :chris=>95}
-grades.select { |k, v| k == :alice } # ==> {:alice=>100}
+grades.select { |name, grade| grade < 97 } # => { :bob=>92, :chris=>95 }
+grades.select { |k, v| k == :alice } # => { :alice=>100 }
 
 my_hash = { one: 1, two: 2, three: 3 }
-my_hash.each_key { |k| print k } # ==> one two three
-my_hash.each_value { |v| print v } # ==> 1 2 3
+my_hash.each_key { |k| print k } # => one two three
+my_hash.each_value { |v| print v } # => 1 2 3
 
 if movies[title.to_sym] == nil  # add to hash
   movies[title.to_sym] = rating.to_i
@@ -325,17 +328,17 @@ end
 [1, 2, 3].respond_to?(:push)  # true
 [1, 2, 3].respond_to?(:to_sym)  # false
 
-[1, 2, 3] << 4 # ==> [1, 2, 3, 4]
-"Yukihiro " << "Matsumoto" # ==> "Yukihiro Matsumoto"
+[1, 2, 3] << 4 # => [1, 2, 3, 4]
+"Yukihiro " << "Matsumoto" # => "Yukihiro Matsumoto"
 
 drink = "espresso"
 age = 26
-"I love " + drink   # ==> I love espresso
-"I love " << drink  # ==> I love espresso
-"I am " + age.to_s + " years old." # ==> "I am 26 years old."
-"I am " << age.to_s << " years old." # ==> "I am 26 years old."
-"I love #{drink}." # ==> I love espresso.
-"I am #{age} years old." # ==> I am 26 years old.
+"I love " + drink   # => I love espresso
+"I love " << drink  # => I love espresso
+"I am " + age.to_s + " years old." # => "I am 26 years old."
+"I am " << age.to_s << " years old." # => "I am 26 years old."
+"I love #{drink}." # => I love espresso.
+"I am #{age} years old." # => I am 26 years old.
 
 return "n must be an integer." unless n.is_a? Integer
 
@@ -343,10 +346,10 @@ return "n must be an integer." unless n.is_a? Integer
 [1, 2, 3].each { |num| puts num }
 
 my_nums = [1, 2, 3]
-my_nums.collect { |num| num ** 2 } # ==> [1, 4, 9]
-my_nums # ==> [1, 2, 3]
-my_nums.collect! { |num| num ** 2 } # ==> [1, 4, 9]
-my_nums # ==> [1, 4, 9]
+my_nums.collect { |num| num ** 2 } # => [1, 4, 9]
+my_nums # => [1, 2, 3]
+my_nums.collect! { |num| num ** 2 } # => [1, 4, 9]
+my_nums # => [1, 4, 9]
 # The .collect! and .map! methods do the exact same thing
 
 def yield_name(name)
@@ -358,16 +361,17 @@ def yield_name(name)
 end
 yield_name("Eric") { |n| puts "My name is #{n}." }
 
-#=============>
-# In the method! Let's yield.
-# My name is Kim.
-# In between the yields!
-# My name is Eric.
-# Block complete! Back in the method.
+=begin
+=> In the method! Let's yield.
+=> My name is Kim.
+=> In between the yields!
+=> My name is Eric.
+=> Block complete! Back in the method.
+=end
 
 # The & is used to convert the cube proc into a block
 cube = Proc.new { |x| x ** 3 }
-[1, 2, 3].collect!(&cube)	# ==> [1, 8, 27]
+[1, 2, 3].collect!(&cube)	# => [1, 8, 27]
 [1, 2, 3].collect! { |x| x ** 3 }	# same as above!
 
 # Why bother saving our blocks as procs? There are two main advantages:
@@ -379,7 +383,7 @@ test = Proc.new { # does something }
 test.call 	# does that something!
 
 strings = ["1", "2", "3"]
-nums = strings.map(&:to_i)	# ==> [1, 2, 3]
+nums = strings.map(&:to_i)	# => [1, 2, 3]
 
 lambda { puts "Hello!" }	# These two are the same
 Proc.new { puts "Hello!" }
@@ -393,12 +397,12 @@ def lambda_demo(a_lambda)
   a_lambda.call
 end
 lambda_demo(lambda { puts "I'm the lambda!" })
-# =========>
+# =>
 # I'm the method! 
 # I'm the lambda!
 
 def batman_ironman_proc
-  victor = Proc.new { return "Batman will win!" }# this will return
+  victor = Proc.new { return "Batman will win!" } # this will return
   victor.call
   "Iron Man will win!"
 end
@@ -409,10 +413,10 @@ def batman_ironman_lambda
   "Iron Man will win!" # this will return
 end
 puts batman_ironman_lambda
-# See how the proc says Batman will win? This is because it returns immediately, without going back to the batman_ironman_proc method.
+# Proc returns immediately, without going back to the batman_ironman_proc method.
 # Our lambda, however, goes back into the method after being called, so the method returns the last code it evaluates: "Iron Man will win!"
 
-:hello.is_a? Symbol # ==> true
+:hello.is_a? Symbol # => true
 
 # A block is just a bit of code between do..end or {}. It's not an object on its own, but it can be passed to methods like .each or .select.
 # A proc is a saved block we can use over and over.
@@ -437,7 +441,7 @@ end
 ruby = Language.new("Ruby", "Yukihiro Matsumoto")
 ruby.description
 
-# We can create class variables by starting a variable name with two @ symbols. Class variables are attached to entire classes, not just instances of classes
+# We can create class variables by starting a variable name with two @ symbols. Class variables are attached to entire classes, not just instances of classes, like a static method
 class Person
   @@people_count = 0
   def initialize(name)
@@ -450,7 +454,7 @@ class Person
 end
 matz = Person.new("Yukihiro")
 dhh = Person.new("David")
-puts "Number of Person instances: #{Person.number_of_instances}"	# 2
+puts "Number of Person instances: #{Person.number_of_instances}"	# => 2
 
 # Global variables can be declared in two ways. The first is you just define the variable outside of any method or class. If you want to make a variable global from inside a method or class, just start it with a $
 class MyClass
@@ -458,6 +462,7 @@ class MyClass
 end
 puts $my_variable
 
+# inheritance
 class Creature
   def initialize(name)
     @name = name
@@ -556,151 +561,3 @@ end
 peter = Rabbit.new("Peter")
 peter.jump
 
-########################### Final Project  #############################
-module Menu
-
-    def menu
-      " Welcome to the TodoLister Program!
-      This menu will help you use the Task List System
-      1) Add
-      2) Show
-      3) Update
-      4) Delete
-      5) Write to File
-      6) Read from File
-      7) Toggle Status
-      Q) Quit "
-    end
-
-    def show
-      menu
-    end
-
-  end
-
-  module Promptable
-
-    def prompt(message = "Just the facts, ma'am.", symbol = ':> ')
-      print message
-      print symbol
-      gets.chomp
-    end
-
-  end
-
-  class List
-    attr_reader :all_tasks
-
-    def initialize
-      @all_tasks = []
-    end
-
-    def add(task)
-      all_tasks << task
-    end
-
-    def delete(task_number)
-      all_tasks.delete_at(task_number - 1)
-    end
-
-    def update(task_number, task)
-      all_tasks[task_number - 1] = task
-    end
-
-    def show
-      all_tasks.map.with_index { |l, i| "(#{i.next}): #{l}" }
-    end
-
-    def write_to_file(filename)
-      machinified = @all_tasks.map(&:to_machine).join("\n")
-      IO.write(filename, machinified)
-    end
-
-    def read_from_file(filename)
-      IO.readlines(filename).each do |line|
-        status, *description = line.split(':')
-        status = status.downcase.include?('x')
-        add(Task.new(description.join(':').strip, status))
-      end
-    end
-
-    def toggle(task_number)
-      all_tasks[task_number - 1].toggle_status
-    end
-      
-end
-
-  class Task
-    attr_reader :description
-    attr_accessor :completed_status
-
-    def initialize(description, completed_status = false)
-      @description = description
-      @completed_status = completed_status
-    end
-
-    def to_s
-      "#{represent_status} : #{description}"
-    end
-
-    def completed?
-      completed_status
-    end
-
-    def toggle_status
-      @completed_status = !completed?
-    end
-
-    def to_machine
-      "#{represent_status}:#{description}"
-    end
-
-    private
-
-    def represent_status
-      completed? ? '[X]' : '[ ]'
-    end
-
-  end
-
-
-  if __FILE__ == $PROGRAM_NAME
-    include Promptable
-    include Menu
-    my_list = List.new
-    puts 'Please choose from the following list'
-    until ['q'].include?(user_input = prompt(show).downcase)
-      case user_input
-        when '1'
-          my_list.add(Task.new(prompt('What is the task you 
-          would like to accomplish?')))
-        when '2'
-          puts my_list.show
-        when '3'
-          my_list.update(prompt('Which task to update?').to_i, 
-          Task.new(prompt('Task Description?')))
-        when '4'
-          puts my_list.show
-          my_list.delete(prompt('Which task to delete?').to_i)
-        when '5'
-          my_list.write_to_file(prompt 'What is the filename to 
-          write to?')
-        when '6'
-          begin
-            my_list.read_from_file(prompt('What is the filename to 
-            read from?'))
-          rescue Errno::ENOENT
-            puts 'File name not found, please verify your file name 
-            and path.'
-          end
-        when '7'
-          puts my_list.show
-          my_list.toggle(prompt('Which would you like to toggle the 
-          status for?').to_i)
-        else
-          puts 'Try again, I did not understand.'
-        end
-        prompt('Press enter to continue', '')
-      end
-    puts 'Outro - Thanks for using the menu system!'
-  end
