@@ -8,6 +8,10 @@ This is my notes of some useful terminal commands & other shortcurs
 `ps -ax`    # list all process
 `lsof -i :8888`     # find which process is using some port, such as 8888
 `curl http://localhost:8888/v1/chain/get_info`      # get the webpage in terminal
+`cat `which bundle` `   # this will first evaluation "which bundle" as a path, and cat this file
+
+`alias be='bundle exec'`    # make an alias
+`export BE='bundle exec'`    # make an environment variable. aliases are only a shell feature. Environment variables are inherited by all subprocesses
 
 
 ## Ruby & Rails
@@ -15,6 +19,7 @@ This is my notes of some useful terminal commands & other shortcurs
 `rvm use *[--default] [ruby version number]`
 `gem info *[gem package name]`
 `gem env`
+`gem list`
 
 
 ## Shortcut
@@ -36,3 +41,6 @@ This is my notes of some useful terminal commands & other shortcurs
 ## Git
 `git rebase -i @~n`     # rebase interactively top n commit, @ is shortcut for HEAD
 `git reset --soft HEAD~1`   # reset the last changes to staged from commited state
+
+`git diff [branch_1]..branch_2 [-- filename]`   # git diff between two branches (or specific file)
+`git diff origin/ruby_2_3..origin/ruby_2_2 -- lib/ostruct.rb`   # example

@@ -59,8 +59,8 @@ this command created a new model named Message. In doing so, Rails created two f
 class CreateMessages < ActiveRecord::Migration
   def change	# The change method tells Rails what change to make to the database. 
     create_table :messages do |t|		# create a new table in the database for storing messages.
-	  t.text :content			# create a text column called content in the messages tables.
-      t.timestamps	# creates two more columns in the messages table called created_at and updated_at. These columns are automatically set when a message is created and updated.
+	    t.text :content		# create a text column called content in the messages tables.
+      t.timestamps	    # creates two more columns in the messages table called created_at and updated_at. These columns are automatically set when a message is created and updated.
     end
   end
 end
@@ -89,7 +89,6 @@ class MessagesController < ApplicationController
 	def message_params 	# create action uses the message_params method to safely collect data from the form and update the database.
 	    params.require(:message).permit(:content) 
 	end
-
 end
 ## app/views/messages/index.html.erb
 <div class="container">

@@ -561,3 +561,20 @@ end
 peter = Rabbit.new("Peter")
 peter.jump
 
+
+
+
+
+
+
+
+########################### Debug #############################
+some_instance.pry   # this will lead to a termianl
+method(:ng).owner
+method(:ng).source_location
+
+
+
+
+
+
