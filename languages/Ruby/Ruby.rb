@@ -562,16 +562,232 @@ peter = Rabbit.new("Peter")
 peter.jump
 
 
-
-
-
-
-
-
 ########################### Debug #############################
 some_instance.pry   # this will lead to a termianl
 method(:ng).owner
 method(:ng).source_location
+
+
+#----------------------------------------------------------------#
+#----------------------------- More -----------------------------#
+#----------------------------------------------------------------#
+### Line Ending
+# Ruby interprets semicolons and newline characters as the ending of a statement. However, if Ruby encounters operators, such as +, −, or backslash at the end of a line, they indicate the continuation of a statement.
+
+### Here Document
+# "Here Document" refers to build strings from multiple lines. Following a << you can specify a string or an identifier to terminate the string literal, and all lines following the current line up to the terminator are the value of the string. If the terminator is quoted, the type of quotes determines the type of the line-oriented string literal.
+print <<EOF
+   This is the first way of creating
+   here document ie. multiple line string.
+EOF
+
+print <<"EOF";                # same as above
+   This is the second way of creating
+   here document ie. multiple line string.
+EOF
+
+print <<`EOC`                 # execute commands
+  echo hi there
+  echo lo there
+EOC
+
+print <<"foo", <<"bar"  # you can stack them
+  I said foo.
+foo
+  I said bar.
+bar
+=begin
+  ==>
+  This is the first way of creating
+  her document ie. multiple line string.
+  This is the second way of creating
+  her document ie. multiple line string.
+  hi there
+  lo there
+  I said foo.
+  I said bar.
+=end
+
+### BEGIN and END
+# print something as the beginning and end of the program
+puts "This is main Ruby Program"
+END {
+   puts "Terminating Ruby Program"
+}
+BEGIN {
+   puts "Initializing Ruby Program"
+}
+
+### variables
+=begin
+There are 6 types of varaibles in Ruby:
+- Local Variables: Local variables are the variables that are defined in a method. Local variables are not available outside the method. You will see more details about method in subsequent chapter. Local variables begin with a lowercase letter or _.
+
+- Instance Variables: Instance variables are available across methods for any particular instance or object. That means that instance variables change from object to object. Instance variables are preceded by the at sign (@) followed by the variable name.
+
+- Class Variables: Class variables are available across different objects. A class variable belongs to the class and is a characteristic of a class. They are preceded by the sign @@ and are followed by the variable name.
+
+- Global Variables: Class variables are not available across classes. If you want to have a single variable, which is available across classes, you need to define a global variable. The global variables are always preceded by the dollar sign ($).
+
+- Constants: Constants begin with an uppercase letter. Constants defined within a class or module can be accessed from within that class or module, and those defined outside a class or module can be accessed globally. Constants may not be defined within methods. Referencing an uninitialized constant produces an error.
+=end
+
+# Interger Numbers (class of Fixnum or Bignum)
+123                  # Fixnum decimal
+1_234                # Fixnum decimal with underline. Underline is automatically is ignored
+-500                 # Negative Fixnum
+0377                 # octal
+0xff                 # hexadecimal
+0b1011               # binary
+?a                   # character code for 'a'
+?\n                  # code for a newline (0x0a)
+12345678901234567890 # Bignum
+
+# Floating Numbers (class Float)
+123.4                # floating point value
+1.0e6                # scientific notation
+4E20                 # dot not required
+4e+20                # sign before exponential
+
+# String Literals (class String)
+puts "Multiplication Value : #{24*60*60}";  # inject expression in string
+
+# Ranges
+# 3 ways to create a range
+range = 1..5   # (include end value)
+range = 1...5  # (exclude end value)
+range = Range.new
+
+
+### operators
+# <=> is Combined comparison operator. Returns 0 if first operand equals second, 1 if first operand is greater than the second and -1 if first operand is less than the second. 
+
+# .eql?() return true if the receiver and argument have both the same type and equal values. 
+1 == 1.0      # => true
+1.eql?(1.0)   # => false
+
+# .equal?() return true if the receiver and argument have the same object id. 
+
+# Parallel Assignment: multiple variables can be assigned together
+a, b = b, a
+
+# Bitwise Operators
+& AND
+| OR
+^ XOR
+~ Binary Ones Complement (flip bits)
+<< Left Shift
+>> Right Shift
+
+# Logical Operators
+and
+or
+&&
+||
+!
+not
+
+# Ternary Operator
+# condition_true? x : y
+
+# defined?() returns a description string of the expression, or nil if the expression isn't defined.
+foo = 42
+defined? foo    # => "local-variable"
+defined? $_     # => "global-variable"
+defined? bar    # => nil (undefined)
+
+defined? puts        # => "method"
+defined? puts(bar)   # => nil (bar is not defined here)
+defined? unpack      # => nil (not defined here)
+
+defined? super     # => "super" (if it can be called)
+defined? super     # => nil (if it cannot be)
+
+defined? yield    # => "yield" (if there is a block passed)
+defined? yield    # => nil (if there is no block)
+
+# Dot "." and Double Colon "::" Operators
+=begin
+You call a module method by preceding its name with the module's name and a period.
+You reference a constant using the module name and two colons.
+
+The :: is a unary operator that allows: constants, instance methods and class methods defined within a class or module, to be accessed from anywhere outside the class or module.
+
+Remember in Ruby, classes and methods may be considered constants too.
+
+You need to just prefix the :: Const_name with an expression that returns the appropriate class or module object.
+
+If no prefix expression is used, the main Object class is used by default.
+=end
+
+# example 1
+MR_COUNT = 0         # constant defined on main Object class
+module Foo
+   MR_COUNT = 0
+   ::MR_COUNT = 1    # set global count to 1
+   MR_COUNT = 2      # set local count to 2
+end
+puts MR_COUNT        # => 1
+puts Foo::MR_COUNT   # => 2
+
+# example 2
+CONST = ' out'
+class Inside_one
+   CONST = proc {' in proc'}
+   def where_is_my_CONST
+      ::CONST + ' inside one'
+   end
+end
+class Inside_two
+   CONST = ' inside two'
+   def where_is_my_CONST
+      CONST
+   end
+end
+puts Inside_one.new.where_is_my_CONST             # => out inside one
+puts Inside_two.new.where_is_my_CONST             # => inside two
+puts CONST                                        # => out
+puts Object::CONST                                # => out
+puts Inside_one::CONST                            # => #<Proc:0x00007ff85e817f28@(irb):3>
+puts Inside_two::CONST                            # => inside two
+puts Inside_one::CONST.call                       # => in proc
+
+
+
+
+
+
+
+
+
+
+
+### 杂
+# literal template
+$global_variable = 10
+puts "Global variable in Class2 is #$global_variable"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

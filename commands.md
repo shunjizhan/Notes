@@ -34,8 +34,8 @@ This is my notes of some useful terminal commands & other shortcurs
 `cmd + ,`           # go to options
 `cmd + Shift + P`   # console
 `cmd + R`           # search tokens
-`cmd + Shift + R`   # search tokens globally
-`cmd + Shift + r`   # chrome force refresh
+`cmd + Shift + R`   # sublime search tokens globally / chrome force refresh
+`cmd + Option + D`   # toggle Mac dock
 
 
 ## Git
@@ -44,3 +44,9 @@ This is my notes of some useful terminal commands & other shortcurs
 
 `git diff [branch_1]..branch_2 [-- filename]`   # git diff between two branches (or specific file)
 `git diff origin/ruby_2_3..origin/ruby_2_2 -- lib/ostruct.rb`   # example
+
+`git commit --amend`    # squash this commit to previous
+`git add . -p`          # add each chunk interactively
+
+
+
