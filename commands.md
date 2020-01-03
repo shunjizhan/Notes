@@ -13,6 +13,8 @@ This is my notes of some useful terminal commands & other shortcurs
 `alias be='bundle exec'`    # make an alias
 `export BE='bundle exec'`    # make an environment variable. aliases are only a shell feature. Environment variables are inherited by all subprocesses
 
+`ssh something -A`  # -A will forward identity
+
 
 ## Ruby & Rails
 `rvm list`
@@ -29,13 +31,15 @@ This is my notes of some useful terminal commands & other shortcurs
 `cmd + DEL`         # deleteLine up to cursor
 `cmd + Shift + D`   # duplicate line
 `cmd + D`           # add next
+`cmd + R`           # search tokens
+`cmd + Shift + R`   # search tokens globally
+`cmd + L`           # select this whole line
+
 `cmd + W`           # close current tab
 `cmd + Shift + W`   # close all
 `cmd + ,`           # go to options
 `cmd + Shift + P`   # console
-`cmd + R`           # search tokens
-`cmd + Shift + R`   # sublime search tokens globally / chrome force refresh
-`cmd + Option + D`   # toggle Mac dock
+`cmd + Option + D`  # toggle Mac dock
 
 
 ## Git

@@ -37,3 +37,5 @@ multiLineTextInput = wrapper.find("MultiLineTextInput");
 ```
 
 Lesson: one reason that this stuck me for a while was that I kind of assume that the variable stores a reference. So all my thinking and experiment were based on this assumptiion, which made me never able to find the bug. One good way of thoroughly exame the logic is "from the beginning", don't stuch in one place, just go through the whole code and even these lines that seems to be "impossible to be wrong".
+
+Notes: for html element, it doesn't seem to have this problem, only react component has. Also, I didn't call `unmount` after each, this might also be a solution.

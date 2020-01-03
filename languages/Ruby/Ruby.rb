@@ -571,10 +571,10 @@ method(:ng).source_location
 #----------------------------------------------------------------#
 #----------------------------- More -----------------------------#
 #----------------------------------------------------------------#
-### Line Ending
+# ---------- Line Ending ---------- #
 # Ruby interprets semicolons and newline characters as the ending of a statement. However, if Ruby encounters operators, such as +, −, or backslash at the end of a line, they indicate the continuation of a statement.
 
-### Here Document
+# ---------- Here Document ---------- #
 # "Here Document" refers to build strings from multiple lines. Following a << you can specify a string or an identifier to terminate the string literal, and all lines following the current line up to the terminator are the value of the string. If the terminator is quoted, the type of quotes determines the type of the line-oriented string literal.
 print <<EOF
    This is the first way of creating
@@ -608,7 +608,7 @@ bar
   I said bar.
 =end
 
-### BEGIN and END
+# ---------- BEGIN and END ---------- #
 # print something as the beginning and end of the program
 puts "This is main Ruby Program"
 END {
@@ -618,7 +618,7 @@ BEGIN {
    puts "Initializing Ruby Program"
 }
 
-### variables
+# ---------- variables ---------- #
 =begin
 There are 6 types of varaibles in Ruby:
 - Local Variables: Local variables are the variables that are defined in a method. Local variables are not available outside the method. You will see more details about method in subsequent chapter. Local variables begin with a lowercase letter or _.
@@ -659,7 +659,7 @@ range = 1...5  # (exclude end value)
 range = Range.new
 
 
-### operators
+# ---------- operators ---------- #
 # <=> is Combined comparison operator. Returns 0 if first operand equals second, 1 if first operand is greater than the second and -1 if first operand is less than the second. 
 
 # .eql?() return true if the receiver and argument have both the same type and equal values. 
@@ -753,12 +753,100 @@ puts Inside_two::CONST                            # => inside two
 puts Inside_one::CONST.call                       # => in proc
 
 
+# ---------- Conditions ---------- #
+# if statement without else
+$debug = 1
+print "debug\n" if $debug
+
+# case statement
+$age =  5
+case $age
+  when 0 .. 2
+     puts "baby"
+  when 3 .. 6
+     puts "little child"
+  when 7 .. 12
+     puts "child"
+  when 13 .. 18
+     puts "youth"
+  else
+     puts "adult"
+end
+
+# ---------- Loops ---------- #
+### while statement
+$i = 0
+$num = 5
+while $i < $num  do
+   puts("Inside the loop i = #$i" )
+   $i +=1
+end
+
+# If a while modifier follows a begin statement with no rescue or ensure clauses, 
+# code is executed once before conditional is evaluated
+begin 
+  # code
+end while conditional
 
 
+### until statement
+until conditional [do]
+  # code
+end
+
+# If an until modifier follows a begin statement with no rescue or ensure clauses
+# code is executed once before conditional is evaluated.
+begin
+   # code
+end until conditional
 
 
+### for statement
+for var1 [, var2 ...] in expression [do]
+  # code
+end
+
+for i in 0..5
+   puts "Value of local variable is #{i}"
+end
+
+# A for...in loop is almost exactly equivalent to the following, except that a for loop doesn't create a new scope for local variables. A for loop's expression is separated from code by the reserved word do, a newline, or a semicolon.
+(expression).each do |variable[, variable...]| 
+  # code 
+end
+
+(0..5).each do |i|
+   puts "Value of local variable is #{i}"
+end
 
 
+### break statement
+# Terminates the most internal loop. Terminates a method with an associated block if called within the block (with the method returning nil).
+
+
+### next statement
+# Jumps to the next iteration of the most internal loop. Terminates execution of a block if called within a block (with yield or call returning nil).
+
+
+### redo statement
+# Restarts this iteration of the most internal loop, without checking loop condition. Restarts yield or call if called within a block.
+
+
+### retry statement
+# If retry appears in rescue clause of begin expression, restart from the beginning of the begin body.
+begin
+  do_something # exception raised
+rescue
+  # handles error
+  retry  # restart from beginning
+end
+
+# If retry appears in the iterator, the block, or the body of the for expression, restarts the invocation of the iterator call. Arguments to the iterator is re-evaluated.
+# *** this one doesn't seem to work though
+for i in 0..5
+  retry if i > 2
+  puts "Value of local variable is #{i}"
+end
 
 
 
@@ -769,7 +857,365 @@ puts "Global variable in Class2 is #$global_variable"
 
 
 
+# ---------- Methods ---------- #
+### define methods
+def method_name 
+   expr..
+end
 
+def method_name (var1, var2)
+   expr..
+end
+
+### call methods
+method_name         # without params
+method_name 25, 30  # with params
+
+### variable number of parameters
+def sample (*test)
+   puts "The number of parameters is #{test.length}"
+   for i in 0...test.length
+      puts "The parameters are #{test[i]}"
+   end
+end
+
+
+
+# ---------- Blocks ---------- #
+block_name {
+   statement1
+   statement2
+   ..........
+}
+
+### invoke a block
+# we can invoke a block from method using yield, which will look for the block with the same name as current function
+def test
+   puts "You are in the method"
+   yield
+   puts "You are again back to the method"
+   yield
+end
+test { puts "You are in the block" }
+=begin
+  ==>
+  You are in the method
+  You are in the block
+  You are again back to the method
+  You are in the block
+=end
+
+
+### invoke a block with parameters
+def test
+   yield 5
+   puts "You are in the method test"
+   yield 100
+end
+test {|i| puts "You are in the block #{i}"}
+=begin
+  ==>
+  You are in the block 5
+  You are in the method test
+  You are in the block 100
+=end
+
+
+## block and method
+def test(&block)
+   block.call
+end
+test { puts "Hello World!"}   # => Hello World!
+
+
+
+# ---------- Modules ---------- #
+module Math
+   PI = 3.141592654
+   def Math.sin(x)
+    # ..
+   end
+
+end
+
+### require a module
+$LOAD_PATH << '.'   # If you do not want to use $LOAD_PATH then you can use require_relative to include files from a relative directory.
+require 'math.rb'   # .rb is optional
+y = Math.sin(Math::PI / 4)
+
+
+### embed a module in a class
+class Bitcoin
+include POW
+   def use_module
+      puts POW::block_time
+   end
+end
+
+
+
+# ---------- Strings ---------- #
+### Expression Substitution
+x, y = 12, 36
+puts "The value of x is #{ x }."
+puts "The sum of x and y is #{ x + y }."
+
+
+### General Delimited Strings
+%{Ruby is fun.}    # => "Ruby is fun."
+%Q{ Ruby is fun. } # => " Ruby is fun. "
+%q[Ruby is fun.]  # equivalent to a single-quoted string
+%x!ls!            # equivalent to back tick command output `ls`
+
+
+### Character Encoding
+# The default character set for Ruby is ASCII, whose characters may be represented by single bytes. 
+# If you use UTF-8, or another modern character set, characters may be represented in one to four bytes.
+# change encoding:
+$KCODE = 'u'
+
+
+### String Built-in Methods
+# ......
+
+
+
+# ---------- Arrays ---------- #
+# Ruby arrays can hold objects such as String, Integer, Fixnum, Hash, Symbol, even other Array objects. 
+# Ruby arrays are not as rigid as arrays in other languages. 
+# Ruby arrays grow automatically while adding elements to them.
+
+
+
+# ---------- Hashes ---------- #
+# A Hash is a collection of key-value pairs like this: "employee" = > "salary". It is similar to an Array, except that indexing is done via arbitrary keys of any object type, not an integer index.
+months = Hash.new               # create a Hash
+months = Hash.new( "month" )    # create a Hash with default value
+H = Hash["a" => 100, "b" => 200]
+
+# You can use any Ruby object as a key or value, even an array, so the following example is a valid one −
+[1,"jan"] => "January"
+
+
+### hash public api
+# ......
+
+
+
+# ---------- Date and Time ---------- #
+# The Time class represents dates and times in Ruby
+time1 = Time.new
+time2 = Time.now    # does the same thing as above
+
+puts "Current Time : " + time1.inspect  # => Current Time : Mon Jun 02 12:02:39 -0700 2008
+puts "Current Time : " + time2.inspect  # => Current Time : Mon Jun 02 12:02:39 -0700 2008
+
+
+### format date
+Time.local(2008, 7, 8)          # => # July 8, 2008
+Time.local(2008, 7, 8, 9, 10)   # => July 8, 2008, 09:10am, local time
+Time.utc(2008, 7, 8, 9, 10)     # => July 8, 2008, 09:10 UTC
+Time.gm(2008, 7, 8, 9, 10, 11)  # => July 8, 2008, 09:10:11 GMT (same as UTC)
+
+
+### component of a Time
+time = Time.new
+
+puts time.year    # => Year of the date 
+puts time.month   # => Month of the date (1 to 12)
+puts time.day     # => Day of the date (1 to 31 )
+puts time.wday    # => 0: Day of week: 0 is Sunday
+puts time.yday    # => 365: Day of year
+puts time.hour    # => 23: 24-hour clock
+puts time.min     # => 59
+puts time.sec     # => 59
+puts time.usec    # => 999999: microseconds
+puts time.zone    # => "UTC": timezone name
+
+# format data using components
+time = Time.new
+values = time.to_a
+p values  
+# => [26, 10, 12, 2, 6, 2008, 1, 154, false, "MST"]
+# represents [sec, min, hour, day, month, year, wday, yday, isdst, zone]
+puts Time.utc(*values)  # => Mon Jun 02 12:15:36 UTC 2008
+
+
+### time arithmetic
+now = Time.now         # Current time
+past = now - 10        # 10 seconds ago.  [Time - number => Time]
+future = now + 10      # 10 seconds later [Time + number => Time]
+diff = future - past   # => 10            [Time - Time => number of seconds]
+puts diff              # => 20 
+
+
+
+# ---------- Range ---------- #
+(1..5)      # => 1, 2, 3, 4, 5
+(1...5)     # => 1, 2, 3, 4
+('a'..'d')  # => 'a', 'b', 'c', 'd'
+
+# The sequence 1..100 is held as a Range object containing references to two Fixnum objects. We can convert a range to a list using the to_a method. 
+range1 = (1..10).to_a         # => [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+range2 = ('bar'..'bat').to_a  # => ["bar", "bas", "bat"]
+
+
+### Range built in methods
+digits = 0..9
+
+puts digits.include?(5)  # => true
+puts digits.min          # 0
+puts digits.max          # 9
+puts digits.reject {|i| i < 5 }   # 5, 6, 7, 8, 9
+
+digits.each do |digit|
+   puts "In Loop #{digit}"
+end
+
+
+### ranges as conditions
+# don't really understand... 
+# prints sets of lines from the standard input, where the first line in each set contains the word start and the last line the word ends −
+while gets
+   print if /start/../end/
+end
+
+# range used in case statement
+score = 70
+result = case score
+   when 0..40 then "Fail"
+   when 41..60 then "Pass"
+   when 61..70 then "Pass with Merit"
+   when 71..100 then "Pass with Distinction"
+   else "Invalid Score"
+end
+puts result
+
+# range as intervals
+# test if some value falls within the interval represented by the range. This is done using ===, the case equality operator.
+if ((1..10) === 5)
+   puts "5 lies in (1..10)"
+end
+
+if (('a'..'j') === 'c')
+   puts "c lies in ('a'..'j')"
+end
+
+if (('a'..'j') === 'z')
+   puts "z lies in ('a'..'j')"
+end
+=begin
+  ==>
+  5 lies in (1..10)
+  c lies in ('a'..'j')  
+=end
+
+
+
+# ---------- Iterator ---------- #
+# Iterators are nothing but methods supported by collections. Objects that store a group of data members are called collections. In Ruby, arrays and hashes can be termed collections. Iterators return all the elements of a collection, one after the other.
+collection.each do |variable|
+  # code
+end
+
+ary = [1, 2, 3, 4, 5]
+ary.each do |i|
+   puts i
+end
+
+### collect iterator
+# The collect iterator returns all the elements of a collection.
+a = [1, 2, 3, 4, 5]
+b = Array.new
+b = a.collect
+puts b    # => 1 2 3 4 5
+# Note: The collect method is not the right way to do copying between arrays. There is another method called a clone, which should be used to copy one array into another array.
+
+# You normally use the collect method when you want to do something with each of the values to get the new array.
+a = [1,2,3,4,5]
+b = a.collect{|x| 10 * x}
+puts b     # => 10 20 30 40 50
+
+
+
+# ---------- IO ---------- #
+# The class IO provides all the basic methods, such as read, write, gets, puts, readline, getc, and printf.
+
+# The gets statement can be used to take any input from the user from standard screen called STDIN.
+puts "Enter a value :"
+val = gets
+puts val
+
+# putc statement can be used to output one character at a time.
+str = "Hello Ruby!"
+putc str    # => H
+
+# print is similar to puts, but doesn't print new line
+print "Hello World"
+print "Good Morning"  
+# => Hello WorldGood Morning
+
+### file operations
+file = File.new("filename", "mode")
+   # ... process the file
+file.close
+
+# File.open method can be associated with a block, whereas you cannot do the same using the File.new method.
+File.open("filename", "mode") do |aFile|
+   # ... process the file
+end
+
+# readline
+arr = IO.readlines("input.txt")
+puts arr[0]
+puts arr[1]
+
+# The difference between the method foreach and the method readlines is that the method foreach is associated with a block
+IO.foreach("input.txt"){ |block| puts block }
+
+# rename and delete
+File.rename( "test1.txt", "test2.txt" )
+File.delete("test2.txt")
+
+# chmod
+file = File.new( "test.txt", "w" )
+file.chmod( 0755 )
+
+# test whether a file exists before opening it
+File.open("file.rb") if File::exists?( "file.rb" )
+
+# 杂
+File.file?( "text.txt" )    
+File::directory?( "/usr/local/bin" ) 
+File.readable?( "test.txt" )   
+File.writable?( "test.txt" )  
+File.executable?( "test.txt" )
+File.zero?( "test.txt" )  # if it is zero size
+
+File.size?( "text.txt" )     # => 1002
+File::ftype( "test.txt" )    # => file (filetype: oneof[file, directory, characterSpecial, blockSpecial, fifo, link, socket, or unknown])
+
+# find when a file was created, modified, or last accessed
+File::ctime( "test.txt" ) # => Fri May 09 10:06:37 -0700 2008
+File::mtime( "text.txt" ) # => Fri May 09 10:44:44 -0700 2008
+File::atime( "text.txt" ) # => Fri May 09 10:45:01 -0700 2008
+
+### Dir class
+Dir.chdir("/usr/bin")   # change directory
+puts Dir.pwd            # return current dir
+
+# get a list of the files and directories within a specific directory using Dir.entries −
+puts Dir.entries("/usr/bin").join(' ')
+# similar to above
+Dir.foreach("/usr/bin") do |entry|
+   puts entry
+end
+# similar to above
+Dir["/usr/bin/*"]
+
+Dir.mkdir("mynewdir")
+Dir.mkdir( "mynewdir", 755 )
+Dir.delete("testdir")
 
 
 

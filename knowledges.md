@@ -1,8 +1,10 @@
 # Knowledges
 These are some knowledge that is great to keep in mind.
 
+
 ## Tips
 - MacOS will not load `.bashrc` by default, so use `.bash_profile`
+
 
 ## Discovery
 - when do `bundle [something]`, Gemfile was always loaded.
@@ -23,3 +25,8 @@ Actually, the Ruby version management tools are just wrappers that manage path t
 It fetches gems from `vendor/cache`, (I speculate) then the "install" is to copy such gem to the correct path, according to the env variables. 
 
 if `Gemfile.lock` is present, we can do `bundle install` direclty without the --local flag, (I specualte) the lock file is actually the resolved dependencies, which bypass the forever "resolving dependencies" process in bundle install.
+
+
+## Frontend
+### How to align text vertically center in a DIV
+just do `line-height: $height-of-parent;`

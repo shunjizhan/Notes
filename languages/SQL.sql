@@ -82,7 +82,7 @@ from instructor, teaches
 where instructor.ID = teaches.ID
 
 --############### join ###############--
--- for all instructors who has taought a course, find their names and the course ID and all courses they taought
+-- for all instructors who has taught a course, find their names and the course ID and all courses they taought
 select name, course_id
 from instructor, teaches
 where instructor.ID = teaches.ID;
