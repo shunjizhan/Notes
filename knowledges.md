@@ -4,6 +4,7 @@ These are some knowledge that is great to keep in mind.
 
 ## Tips
 - MacOS will not load `.bashrc` by default, so use `.bash_profile`
+- VScode user settings: `~/Library/Application Support/Code/User`
 
 
 ## Discovery
@@ -30,3 +31,12 @@ if `Gemfile.lock` is present, we can do `bundle install` direclty without the --
 ## Frontend
 ### How to align text vertically center in a DIV
 just do `line-height: $height-of-parent;`
+
+
+## Other
+### can't checkout some file
+In my particular case, a file's state is 'both modified', so when I do `git checkout` it didn't work, saying 'error: path 'some/path' is unmerged'.
+
+Solution:
+`git reset file`
+`git checkout file`

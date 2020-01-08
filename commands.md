@@ -25,6 +25,7 @@ This is my notes of some useful terminal commands & other shortcurs
 
 
 ## Shortcut
+### Editor
 `ctrl + shift + K`  # remove whole line
 `ctrl + cmd + G`    # selectAll
 `ctrl + Shift + K`  # deleteWholeLine
@@ -33,13 +34,22 @@ This is my notes of some useful terminal commands & other shortcurs
 `cmd + D`           # add next
 `cmd + R`           # search tokens
 `cmd + Shift + R`   # search tokens globally
-`cmd + L`           # select this whole line
+`cmd + L`           # select whole line
+`cmd + Shift + P`   # console
 
+### Chrome
+`cmd + ⇦ / ⇨`          # go back/front 
+
+### General
 `cmd + W`           # close current tab
 `cmd + Shift + W`   # close all
 `cmd + ,`           # go to options
-`cmd + Shift + P`   # console
+
+### MAC
 `cmd + Option + D`  # toggle Mac dock
+`cmd + shift + G`   # (in finder) go to folder
+`ctrl + ⇦ / ⇨`     # switch window
+`ctrl + ⇧`         # show windows overview
 
 
 ## Git
