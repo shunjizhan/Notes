@@ -30,7 +30,30 @@ if `Gemfile.lock` is present, we can do `bundle install` direclty without the --
 
 ## Frontend
 ### How to align text vertically center in a DIV
+<<<<<<< HEAD
 just do `line-height: $height-of-parent;`
+=======
+just do 
+```scss
+line-height: $height-of-parent;
+```
+
+### How to include external files in Create-React-App
+put 
+```js
+<script src='lib/some-library.min.js'></script>
+``` 
+in `public/index.html`, where `lib/` folder is in `public/`, since create-react-app only serves all the assets in `public/` but not other places such as `src/`.
+
+Similarly, if there are some img in `src/`, this won't work
+```html
+<img src="../../img/goku.jpg" />
+```
+instead we need to do 
+```html
+<img src={ require("../../img/goku.jpg") } />
+```
+>>>>>>> 8d3fdc2b... Update knowledges.md
 
 
 ## Other
