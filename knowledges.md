@@ -30,9 +30,6 @@ if `Gemfile.lock` is present, we can do `bundle install` direclty without the --
 
 ## Frontend
 ### How to align text vertically center in a DIV
-<<<<<<< HEAD
-just do `line-height: $height-of-parent;`
-=======
 just do 
 ```scss
 line-height: $height-of-parent;
@@ -53,7 +50,6 @@ instead we need to do
 ```html
 <img src={ require("../../img/goku.jpg") } />
 ```
->>>>>>> 8d3fdc2b... Update knowledges.md
 
 
 ## Other
