@@ -30,9 +30,28 @@ if `Gemfile.lock` is present, we can do `bundle install` direclty without the --
 
 ## Frontend
 ### How to align text vertically center in a DIV
-just do `line-height: $height-of-parent;`
+just do 
+```scss
+line-height: $height-of-parent;
+```
 
-### Run a packge binary from CLI
+### How to include external files in Create-React-App
+put 
+```js
+<script src='lib/some-library.min.js'></script>
+``` 
+in `public/index.html`, where `lib/` folder is in `public/`, since create-react-app only serves all the assets in `public/` but not other places such as `src/`.
+
+Similarly, if there are some img in `src/`, this won't work
+```html
+<img src="../../img/goku.jpg" />
+```
+instead we need to do 
+```html
+<img src={ require("../../img/goku.jpg") } />
+```
+
+### Run a npm packge binary from CLI
 Usually the binary is in`node_modules/.bin`, it is hard to run because it involves dealing with $PATH stuff, which is really annoying. Now we can use `npx <command>`, which will take care of $PATH automatically. For example 
 ```
 $ npm i -D webpack
