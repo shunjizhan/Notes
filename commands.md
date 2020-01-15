@@ -29,7 +29,10 @@ This is my notes of some useful terminal commands & other shortcurs
 `ctrl + shift + K`  # remove whole line
 `ctrl + cmd + G`    # selectAll
 `ctrl + Shift + K`  # deleteWholeLine
+`DEL`               # delete backwards
 `cmd + DEL`         # deleteLine up to cursor
+`ctrl + DEL`        # delete the word backwards
+`ctrl + BACK`       # delete the word
 `cmd + Shift + D`   # duplicate line
 `cmd + D`           # add next
 `cmd + R`           # search tokens
@@ -50,6 +53,7 @@ This is my notes of some useful terminal commands & other shortcurs
 `cmd + shift + G`   # (in finder) go to folder
 `ctrl + ⇦ / ⇨`     # switch window
 `ctrl + ⇧`         # show windows overview
+`cmd + ctrl + q`    # sleep
 
 
 ## Git

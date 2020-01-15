@@ -32,6 +32,19 @@ if `Gemfile.lock` is present, we can do `bundle install` direclty without the --
 ### How to align text vertically center in a DIV
 just do `line-height: $height-of-parent;`
 
+### Run a packge binary from CLI
+Usually the binary is in`node_modules/.bin`, it is hard to run because it involves dealing with $PATH stuff, which is really annoying. Now we can use `npx <command>`, which will take care of $PATH automatically. For example 
+```
+$ npm i -D webpack
+$ npx webpack ...
+```
+
+### Import a module from npm package
+Suppose `jscodeshift` is a package in `node_modules`, and `jscodeshift/dist/testUtils` is a file that export `defineTest()`, then we can do something like
+```js
+import { defineTest } from "jscodeshift/dist/testUtils";
+````
+
 
 ## Other
 ### can't checkout some file
