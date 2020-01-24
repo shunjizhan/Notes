@@ -39,6 +39,7 @@ This is my notes of some useful terminal commands & other shortcurs
 `cmd + Shift + R`   # search tokens globally
 `cmd + L`           # select whole line
 `cmd + Shift + P`   # console
+`cmd + Shift + H`   # VSCode replace all
 
 ### Chrome
 `cmd + ⇦ / ⇨`          # go back/front 
@@ -57,14 +58,40 @@ This is my notes of some useful terminal commands & other shortcurs
 
 
 ## Git
-`git rebase -i @~n`     # rebase interactively top n commit, @ is shortcut for HEAD
-`git reset --soft HEAD~1`   # reset the last changes to staged from commited state
+### rebase interactively top n commit, @ is shortcut for HEAD
+`git rebase -i @~n`
 
-`git diff [branch_1]..branch_2 [-- filename]`   # git diff between two branches (or specific file)
+### reset the last changes to staged from commited state 
+`git reset --soft HEAD~1`   
+
+### git diff between two branches (of specific file)
+`git diff [branch_1]..branch_2 [-- filename]`   
 `git diff origin/ruby_2_3..origin/ruby_2_2 -- lib/ostruct.rb`   # example
 
-`git commit --amend`    # squash this commit to previous
-`git add . -p`          # add each chunk interactively
+### squash current commit to previous commit
+`git commit --amend`    
+
+### add each chunk interactively
+`git add . -p`          
+
+### cherry pick some file from some branch/commit
+`git checkout some--branch -- filename`
+`git checkout 9146467 -- filename`
+
+### clean all untracked files
+`git clean -f -d`
+
+### pretty print log
+`git log --pretty=oneline --graph --decorate --all`
+
+### git log in time range
+`git log --since='FEB 10 2016' --until='FEB 19 2016'`
+
+### list all git alias
+`git config -l | grep alias | sed 's/^alias\.//g'`
+
+### seach git log with some keyword
+`git log -S"key_word"`
 
 
 

@@ -5,6 +5,7 @@ These are some knowledge that is great to keep in mind.
 ## Tips
 - MacOS will not load `.bashrc` by default, so use `.bash_profile`
 - VScode user settings: `~/Library/Application Support/Code/User`
+- Sublime user settings: `~/Library/Application Support/Sublime Text 3/Packages/User`
 
 
 ## Discovery
@@ -72,3 +73,8 @@ In my particular case, a file's state is 'both modified', so when I do `git chec
 Solution:
 `git reset file`
 `git checkout file`
+
+### cd into a folder containing whitespace
+`cd ~/Library/Application Support` won't work, instead we can do 
+- `cd ./Library/Application\ Support` or 
+- `cd "./Library/Application Support"/`
