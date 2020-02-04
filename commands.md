@@ -14,6 +14,7 @@ This is my notes of some useful terminal commands & other shortcurs
 `export BE='bundle exec'`    # make an environment variable. aliases are only a shell feature. Environment variables are inherited by all subprocesses
 
 `ssh something -A`  # -A will forward identity
+`alias`     # show all alias
 
 
 ## Ruby & Rails
@@ -22,6 +23,8 @@ This is my notes of some useful terminal commands & other shortcurs
 `gem info *[gem package name]`
 `gem env`
 `gem list`
+`bundle exec rspec spec`    # run all tests
+`bundle install --force`    # force reinstall all gems
 
 
 ## Shortcut
@@ -74,9 +77,11 @@ This is my notes of some useful terminal commands & other shortcurs
 ### add each chunk interactively
 `git add . -p`          
 
-### cherry pick some file from some branch/commit
-`git checkout some--branch -- filename`
-`git checkout 9146467 -- filename`
+### cherry-pick/checkout some file from local branch/commit
+`git cherry-pick/checkout branch/commit -- filename`<br>
+
+### cherry-pick a remote branch
+`git fetch remote_url && git cherry-pick FETCH_HEAD` <br>
 
 ### clean all untracked files
 `git clean -f -d`
@@ -93,5 +98,11 @@ This is my notes of some useful terminal commands & other shortcurs
 ### seach git log with some keyword
 `git log -S"key_word"`
 
+`git clean -f -d`
 
+### hard reset master to sync with remote
+```
+git reset --hard origin/master
+git pull origin master
+```
 

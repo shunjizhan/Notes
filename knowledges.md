@@ -6,10 +6,8 @@ These are some knowledge that is great to keep in mind.
 - MacOS will not load `.bashrc` by default, so use `.bash_profile`
 - VScode user settings: `~/Library/Application Support/Code/User`
 - Sublime user settings: `~/Library/Application Support/Sublime Text 3/Packages/User`
-
-
-## Discovery
-- when do `bundle [something]`, Gemfile was always loaded.
+- When do `bundle [something]`, Gemfile was always loaded.
+- Compare two tags/branchs/commits in github: `https://github.com/some_repo/compare/tag1...tag2`
 
 
 ## Ruby & Rails
