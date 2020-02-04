@@ -1,4 +1,4 @@
-# Blockchain Related Knowledge
+# Blockchain Related Mid-Advanced Knowledge
 
 
 ## Bip39
