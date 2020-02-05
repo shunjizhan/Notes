@@ -3,11 +3,11 @@ These are some knowledge that is great to keep in mind.
 
 
 ## Tips
-- MacOS will not load `.bashrc` by default, so use `.bash_profile`
-- VScode user settings: `~/Library/Application Support/Code/User`
-- Sublime user settings: `~/Library/Application Support/Sublime Text 3/Packages/User`
-- When do `bundle [something]`, Gemfile was always loaded.
-- Compare two tags/branchs/commits in github: `https://github.com/some_repo/compare/tag1...tag2`
+- MacOS will not load `.bashrc` by default, so use `.bash_profile` <br>
+- VScode user settings: `~/Library/Application Support/Code/User` <br>
+- Sublime user settings: `~/Library/Application Support/Sublime Text 3/Packages/User` <br>
+- When do `bundle [something]`, Gemfile was always loaded <br>
+- Compare two tags/branchs/commits in github: `https://github.com/some_repo/compare/tag1...tag2` <br>
 
 
 ## Ruby & Rails
@@ -17,12 +17,12 @@ a couple importance env variables used by RVM:
 - `GEM_PATH`     = /home/ji/.rvm/gems/ruby-2.5.7:/home/ji/.rvm/gems/ruby-2.5.7@global
 - `MY_RUBY_HOME` = /home/ji/.rvm/rubies/ruby-2.5.7      # ruby binary is in here: [here]/bin/ruby
 
-for Thruby, it uses a env variable $RUBIES to find the ruby binary, so the migrate from RVM to Thruby, do `RUBIES+=(~/.rvm/rubies/*)`, which is to add the path for RVM installed rubies for Thuruby to find.
+for Thruby, it uses a env variable $RUBIES to find the ruby binary, so the migrate from RVM to Thruby, do `RUBIES+=(~/.rvm/rubies/*)`, which is to add the path for RVM installed rubies for Thuruby to find. <br>
 
 Actually, the Ruby version management tools are just wrappers that manage path to ruby binary and gems.
 
 ### How does `bundle install --local` works
-It fetches gems from `vendor/cache`, (I speculate) then the "install" is to copy such gem to the correct path, according to the env variables. 
+It fetches gems from `vendor/cache`, (I speculate) then the "install" is to copy such gem to the correct path, according to the env variables. <br>
 
 if `Gemfile.lock` is present, we can do `bundle install` direclty without the --local flag, (I specualte) the lock file is actually the resolved dependencies, which bypass the forever "resolving dependencies" process in bundle install.
 
@@ -76,3 +76,6 @@ Solution:
 `cd ~/Library/Application Support` won't work, instead we can do 
 - `cd ./Library/Application\ Support` or 
 - `cd "./Library/Application Support"/`
+
+### find source of command
+sometimes if we can type something on terminal, but it is not an alias, instead it may be a shell defined function, so `which command_name` will return nothing. Instead we can use a more generic command `type command_name`, this will show not only alias but shell defined functions.
