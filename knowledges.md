@@ -78,25 +78,42 @@ const Component = (props) => {
 ```
 
 ### Pass component as props
-first way: pass as an instantiated prop
+1) pass as an instantiated prop
 ```js
+const Messege = ({ value }) => (<span>{ value }</span>);
+
 const App = ({ message }) => (
-  <div>Hello {message}</div>
+  <div>Hello { message }</div>
 );
 
-const Messege = ({ value }) => (<span>{ value }</span>);
 ReactDOM.render(
   <App message={<Messege value='BTC20000'/>} />,
   document.getElementById("root")
 )
 ```
-second way: pass as children
+
+2) pass as a react block directly
 ```js
-const App = (props) => (
-  <div>Hello {props.children}</div>
+const Messege = (<span>BTC20000</span>);
+
+const App = ({ message }) => (
+  <div>Hello { message }</div>
 );
 
+ReactDOM.render(
+  <App message={ Messege } />,
+  document.getElementById("root")
+);
+```
+
+3) pass as children
+```js
 const Messege = ({ value }) => (<span>{ value }</span>);
+
+const App = (props) => (
+  <div>Hello { props.children }</div>
+);
+
 ReactDOM.render(
   <App>
      <Messege value='BTC20000'/>
