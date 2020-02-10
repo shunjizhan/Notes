@@ -63,6 +63,47 @@ Suppose `jscodeshift` is a package in `node_modules`, and `jscodeshift/dist/test
 import { defineTest } from "jscodeshift/dist/testUtils";
 ````
 
+### Props of a functional component
+```js
+// wrong!!
+const Component = (prop1, prop2) => {}
+
+// correct
+const Component = ({ prop1, prop2}) => {}
+
+// correct
+const Component = (props) => {
+    const { prop1, prop2 } = props;
+}
+```
+
+### Pass component as props
+first way: pass as an instantiated prop
+```js
+const App = ({ message }) => (
+  <div>Hello {message}</div>
+);
+
+const Messege = ({ value }) => (<span>{ value }</span>);
+ReactDOM.render(
+  <App message={<Messege value='BTC20000'/>} />,
+  document.getElementById("root")
+)
+```
+second way: pass as children
+```js
+const App = (props) => (
+  <div>Hello {props.children}</div>
+);
+
+const Messege = ({ value }) => (<span>{ value }</span>);
+ReactDOM.render(
+  <App>
+     <Messege value='BTC20000'/>
+  </App>,
+  document.getElementById("root")
+)
+```
 
 ## Other
 ### can't checkout some file
