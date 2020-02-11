@@ -81,27 +81,28 @@ const Component = (props) => {
 1) pass as an instantiated prop
 ```js
 const Messege = ({ value }) => (<span>{ value }</span>);
+const messege = <Messege value='BTC20000'/>;
 
 const App = ({ message }) => (
   <div>Hello { message }</div>
 );
 
 ReactDOM.render(
-  <App message={<Messege value='BTC20000'/>} />,
+  <App message={ messege } />,
   document.getElementById("root")
 )
 ```
 
 2) pass as a react block directly
 ```js
-const Messege = (<span>BTC20000</span>);
+const messege = (<span>BTC20000</span>);
 
 const App = ({ message }) => (
   <div>Hello { message }</div>
 );
 
 ReactDOM.render(
-  <App message={ Messege } />,
+  <App message={ messege } />,
   document.getElementById("root")
 );
 ```
@@ -121,6 +122,13 @@ ReactDOM.render(
   document.getElementById("root")
 )
 ```
+
+### Get full and relative path
+```js
+console.log(window.location.pathname);  // => "/path"
+console.log(window.location.href);      // => "https://example.com/path"
+```
+
 
 ## Other
 ### can't checkout some file
