@@ -63,6 +63,72 @@ Suppose `jscodeshift` is a package in `node_modules`, and `jscodeshift/dist/test
 import { defineTest } from "jscodeshift/dist/testUtils";
 ````
 
+### Props of a functional component
+```js
+// wrong!!
+const Component = (prop1, prop2) => {}
+
+// correct
+const Component = ({ prop1, prop2}) => {}
+
+// correct
+const Component = (props) => {
+    const { prop1, prop2 } = props;
+}
+```
+
+### Pass component as props
+1) pass as an instantiated prop
+```js
+const Messege = ({ value }) => (<span>{ value }</span>);
+const messege = <Messege value='BTC20000'/>;
+
+const App = ({ message }) => (
+  <div>Hello { message }</div>
+);
+
+ReactDOM.render(
+  <App message={ messege } />,
+  document.getElementById("root")
+)
+```
+
+2) pass as a react block directly
+```js
+const messege = (<span>BTC20000</span>);
+
+const App = ({ message }) => (
+  <div>Hello { message }</div>
+);
+
+ReactDOM.render(
+  <App message={ messege } />,
+  document.getElementById("root")
+);
+```
+
+3) pass as children
+```js
+const Messege = ({ value }) => (<span>{ value }</span>);
+
+const App = (props) => (
+  <div>Hello { props.children }</div>
+);
+
+ReactDOM.render(
+  <App>
+     <Messege value='BTC20000'/>
+  </App>,
+  document.getElementById("root")
+)
+```
+
+### Get full and relative path
+```js
+console.log(window.location.pathname);  // => "/path"
+console.log(window.location.href);      // => "https://example.com/path"
+```
+
 
 ## Other
 ### can't checkout some file
