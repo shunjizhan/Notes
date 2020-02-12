@@ -9,7 +9,12 @@ This is my notes of some useful terminal commands & other shortcurs
 `lsof -i :8888`     # find which process is using some port, such as 8888 <br>
 `curl http://localhost:8888/v1/chain/get_info`      # get the webpage in terminal <br>
 `cat `which bundle` `   # this will first evaluation "which bundle" as a path, and cat this file <br>
+`ssh-add -K ~/.ssh/id_rsa`  # forward identity before ssh <br>
 `ssh something -A`  # -A will forward identity <br>
+`du -ch`     # see size of some file <br>
+`cd -`       # cd to previous dir <br>
+`command1 | xargs command2`     # pass result from command1 to command 2 as argument <br>
+`chmod +x my_script.sh`         # add execution permission <br>
 
 #### alias
 `alias`     # show all alias <br>
@@ -102,7 +107,9 @@ This is my notes of some useful terminal commands & other shortcurs
 #### seach git log with some keyword
 `git log -S"key_word"`
 
-`git clean -f -d`
+### git clean untracked files
+`git clean -f -d`   # clean all
+`git clean -f filename` # celan specific file
 
 #### hard reset master to sync with remote
 ```
