@@ -129,6 +129,30 @@ console.log(window.location.pathname);  // => "/path"
 console.log(window.location.href);      // => "https://example.com/path"
 ```
 
+### Dumb global variable
+In JS, if in a file some variable `x` is used but not defined, maybe some dumb guy defined it globally, try global search `window.x`.
+
+### Conditionally adding keys to object
+```js
+const object = {};
+if (sth.x) {
+  object.x = sth.x;
+}
+
+// same as
+const { x } = sth;
+const object = {
+  ...(x && { x }),
+};
+
+// this also works, since `x && { x }` will be first evaluated as Logical Expression
+// then the whole this is evaluated as a SpreadElement
+const { x } = sth;
+const object = {
+  ...x && { x },
+};
+```
+
 
 ## Other
 ### can't checkout some file
