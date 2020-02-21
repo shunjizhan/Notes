@@ -48,8 +48,7 @@ This is my notes of some useful terminal commands & other shortcurs
 #### Editor
 `ctrl + shift + K`  # remove whole line <br>
 `ctrl + cmd + G`    # selectAll <br>
-`ctrl + Shift + K`  # deleteWholeLine <br>
-`DEL`               # delete backwards <br>
+`DEL (fn + BACK)`   # delete backwards <br>
 `cmd + DEL`         # deleteLine up to cursor <br>
 `ctrl + DEL`        # delete the word backwards <br>
 `ctrl + BACK`       # delete the word <br>
@@ -62,7 +61,7 @@ This is my notes of some useful terminal commands & other shortcurs
 `cmd + Shift + H`   # VSCode replace all <br>
 
 #### Chrome
-`cmd + ⇦ / ⇨`          # go back/front <br>
+`cmd + ⇦ / ⇨`      # go back/front <br>
 
 #### General
 `cmd + W`           # close current tab <br>
