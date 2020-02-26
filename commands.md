@@ -58,7 +58,14 @@ This is my notes of some useful terminal commands & other shortcurs
 `cmd + Shift + R`   # search tokens globally <br>
 `cmd + L`           # select whole line <br>
 `cmd + Shift + P`   # console <br>
-`cmd + Shift + H`   # VSCode replace all <br>
+`cmd + Shift + H`   # replace all (VSCode) <br>
+`cmd + ⇦ / ⇨`      # go to left/right most position <br>
+`cmd + ⇧ / ⇩`      # go to top/bottom position<br>
+`option + shift + ⇦ / ⇨`   # select left/right word <br>
+`cmd + shift + ⇦ / ⇨`      # select line from left/right up to current cursor <br>
+`cmd + shift + ⇧ / ⇩`      # select line from top/bottom up to current cursor<br>
+`cmd + shift + option + ⇦ / ⇨`      # shrink/expand selection <br>
+`ctrl + cmd + ⇦ / ⇨`       # move tabs to left/right window (VSCode) <br>
 
 #### Chrome
 `cmd + ⇦ / ⇨`      # go back/front <br>
