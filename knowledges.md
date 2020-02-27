@@ -153,6 +153,21 @@ const object = {
 };
 ```
 
+### Dispatch a function
+Instead of dispatching an action, if we are using thunk middleware, we can also dispatch a function that takes dispatch as a parameters, so that we can do more complex logic such as ajax and promise. ([example](https://redux.js.org/api/applymiddleware/#example-using-thunk-middleware-for-async-actions))
+```js
+const funcAsAction = dispatch => {
+  dispatch(actionA());
+  someAjaxCall().then(
+    res => dispatch(actionB(res)),
+    err => dispatch(actionC(err))
+  )
+}
+
+store.dispatch(funcAsAction);
+```
+
+
 
 ## Other
 ### can't checkout some file
