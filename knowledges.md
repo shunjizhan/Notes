@@ -50,11 +50,19 @@ instead we need to do
 <img src={ require("../../img/goku.jpg") } />
 ```
 
-### Run a npm packge binary from CLI
+### Run a npm packge binary from CLI and package.json
 Usually the binary is in`node_modules/.bin`, it is hard to run because it involves dealing with $PATH stuff, which is really annoying. Now we can use `npx <command>`, which will take care of $PATH automatically. For example 
 ```
 $ npm i -D webpack
 $ npx webpack ...
+```
+On the other hand, scripts in `package.json` actually have access to npm libraries, so we can do `npm run compile` if we add this to `package.json`
+```json
+{
+  "scripts": {
+    "compile": "webpack"
+  },
+}
 ```
 
 ### Import a module from npm package
@@ -184,3 +192,8 @@ Solution:
 
 ### find source of command
 sometimes if we can type something on terminal, but it is not an alias, instead it may be a shell defined function, so `which command_name` will return nothing. Instead we can use a more generic command `type command_name`, this will show not only alias but shell defined functions.
+
+### mv all files inclusing hidden files
+if we do `mv from/* /to`, this won't move any hidden files. To move all files including hidden files, we can manually specify hidden files: `mv from/* from.* /to`
+
+
