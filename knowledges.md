@@ -175,6 +175,13 @@ const funcAsAction = dispatch => {
 store.dispatch(funcAsAction);
 ```
 
+### reverse array of object
+```js
+// this won't work (why???)
+let newArray = arrayOfObj.reverse();
+// this will work (why???)
+let newArray = [...arrayOfObj].reverse();
+```
 
 
 ## Other
