@@ -82,6 +82,10 @@ This is my notes of some useful terminal commands & other shortcurs
 `ctrl + ⇧`         # show windows overview <br>
 `cmd + ctrl + q`    # sleep <br>
 
+#### Vim
+`gw` auto format commit msg (after selected all the lines) <br>
+`dd` to cut the line and `p` to paste <br>
+
 
 # Git
 ##### rebase interactively top n commit, @ is shortcut for HEAD

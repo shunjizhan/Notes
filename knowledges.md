@@ -183,6 +183,34 @@ let newArray = arrayOfObj.reverse();
 let newArray = [...arrayOfObj].reverse();
 ```
 
+### difference between .fail() and .catch()
+catch will return a new (resolved) promise, whereas fail will return the original promise.
+note that catch(fn) is an alias of then(null, fn).
+```js
+// This will only output "fail"
+$.Deferred()
+  .reject(new Error("something went wrong"))
+  .fail(function() {
+    console.log("fail");
+  })
+  .then(function() {
+    console.log("then after fail");
+  })
+
+// This will output "catch" and "then after catch"
+$.Deferred()
+  .reject(new Error("something went wrong"))
+  .catch(function() {
+    console.log("catch");
+  })
+  .then(function() {
+    console.log("then after catch");
+  })
+```
+
+### run jest on a particular test
+`yarn run jest ... -t 'test name'`
+
 
 ## Other
 ### can't checkout some file
