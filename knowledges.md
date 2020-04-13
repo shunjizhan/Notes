@@ -72,7 +72,7 @@ import { defineTest } from "jscodeshift/dist/testUtils";
 ````
 
 ### Props of a functional component
-```js
+```jsx
 // wrong!!
 const Component = (prop1, prop2) => {}
 
@@ -87,7 +87,7 @@ const Component = (props) => {
 
 ### Pass component as props
 1) pass as an instantiated prop
-```js
+```jsx
 const Messege = ({ value }) => (<span>{ value }</span>);
 const messege = <Messege value='BTC20000'/>;
 
@@ -102,7 +102,7 @@ ReactDOM.render(
 ```
 
 2) pass as a react block directly
-```js
+```jsx
 const messege = (<span>BTC20000</span>);
 
 const App = ({ message }) => (
@@ -116,7 +116,7 @@ ReactDOM.render(
 ```
 
 3) pass as children
-```js
+```jsx
 const Messege = ({ value }) => (<span>{ value }</span>);
 
 const App = (props) => (
