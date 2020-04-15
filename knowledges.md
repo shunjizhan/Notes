@@ -211,6 +211,18 @@ $.Deferred()
 ### run jest on a particular test
 `yarn run jest ... -t 'test name'`
 
+### destructing from import
+We couldn't use destruct from import, which will get error `ES2015 named imports do not destructure. Use another statement for destructuring after the import`.
+```
+// this will throw error
+import { a: { b } } from 'x';
+
+// this will work
+import { a } from 'x';
+const { b } = a; 
+
+```
+
 
 ## Other
 ### can't checkout some file
