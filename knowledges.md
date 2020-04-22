@@ -77,6 +77,55 @@ In JS, if in a file some variable `x` is used but not defined, maybe some dumb g
 ### run jest on a particular test
 `yarn run jest ... -t 'test name'`
 
+### JS object key type
+we can't have integer keys. JavaScript will convert the integer to a string. It is not recommended to use int as key, since this could cause problem due to JS rounding stuff.
+```js
+const test = {
+  100: 'BTC',
+};
+test[100]   // => BTC
+test['100'] // => BTC
+typeof Object.keys(test)[0]   // => string
+```
+
+### Coercion to Boolean Values
+usually we can use `!!` to coercion variable to Boolean Values
+```js
+!!'hello'  // => true
+!!{}       // => true
+!![]       // => true
+!!1       // => true
+
+!!''       // => false
+!!null     // => false
+!!undefined // => false
+!!0        // => false
+```
+
+### short circuit evaluation
+`A && B` returns the value A if A can be coerced into false; otherwise, it returns B.
+```js
+true && 'hello'   // => hello
+'hello' && true   // => true
+'hello' && false  // => false
+'hello' && null  // => null
+null && 'hello'  // => null
+```
+
+`A || B` returns the value A if A can be coerced into true; otherwise, it returns B.
+```js
+true || 'hello'   // => true
+'hello' || true   // => hello
+null || false  // => false
+false || 'hello'  // => hello
+```
+
+short circuit evaluation examples
+```js
+const x = y || 'defaultValue';
+const x = someCondition && 'BTC';
+someCondition && doSth();
+````
 
 ## Other
 ### can't checkout some file
@@ -93,6 +142,9 @@ Solution:
 
 ### find source of command
 sometimes if we can type something on terminal, but it is not an alias, instead it may be a shell defined function, so `which command_name` will return nothing. Instead we can use a more generic command `type command_name`, this will show not only alias but shell defined functions.
+
+### find out more details about some code
+it is very useful to check the commit so that we can know which pieces work together with this code. For example, if I am looking at function `X`, we can check the last commit that changed/added this function, so that we can see a bigger picture.
 
 ### mv all files inclusing hidden files
 if we do `mv from/* /to`, this won't move any hidden files. To move all files including hidden files, we can manually specify hidden files: `mv from/* from.* /to`

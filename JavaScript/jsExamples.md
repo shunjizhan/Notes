@@ -1,17 +1,99 @@
 # JavaScript Examples
+These are some examples/tricks/knowledges that I learned during everyday coding.
 
-### Props of a functional component
+### add spaces to html
+usually html doesn't preserve space, to manually add, we can use:
+```html
+&nbsp; (1 space)
+&ensp; (2 spaces)
+&emsp; (4 spaces)
+```
+
+### destructing from import
+We couldn't use destruct from import, which will get error `ES2015 named imports do not destructure. Use another statement for destructuring after the import`.
 ```js
-// wrong!!
-const Component = (prop1, prop2) => {}
+// this will throw error
+import { a: { b } } from 'x';
 
-// correct
-const Component = ({ prop1, prop2}) => {}
+// this will work
+import { a } from 'x';
+const { b } = a; 
 
-// correct
-const Component = (props) => {
-    const { prop1, prop2 } = props;
+```
+
+### reverse array of object
+```js
+// this won't work (why???)
+let newArray = arrayOfObj.reverse();
+// this will work (why???)
+let newArray = [...arrayOfObj].reverse();
+```
+
+### difference between .fail() and .catch()
+catch will return a new (resolved) promise, whereas fail will return the original promise.
+note that catch(fn) is an alias of then(null, fn).
+```js
+// This will only output "fail"
+$.Deferred()
+  .reject(new Error("something went wrong"))
+  .fail(function() {
+    console.log("fail");
+  })
+  .then(function() {
+    console.log("then after fail");
+  })
+
+// This will output "catch" and "then after catch"
+$.Deferred()
+  .reject(new Error("something went wrong"))
+  .catch(function() {
+    console.log("catch");
+  })
+  .then(function() {
+    console.log("then after catch");
+  })
+```
+
+
+### Dispatch a function
+Instead of dispatching an action, if we are using thunk middleware, we can also dispatch a function that takes dispatch as a parameters, so that we can do more complex logic such as ajax and promise. ([example](https://redux.js.org/api/applymiddleware/#example-using-thunk-middleware-for-async-actions))
+```js
+const funcAsAction = dispatch => {
+  dispatch(actionA());
+  someAjaxCall().then(
+    res => dispatch(actionB(res)),
+    err => dispatch(actionC(err))
+  )
 }
+
+store.dispatch(funcAsAction);
+```
+
+### Conditionally adding keys to object
+```js
+const object = {};
+if (sth.x) {
+  object.x = sth.x;
+}
+
+// same as
+const { x } = sth;
+const object = {
+  ...(x && { x }),
+};
+
+// this also works, since `x && { x }` will be first evaluated as Logical Expression
+// then the whole this is evaluated as a SpreadElement
+const { x } = sth;
+const object = {
+  ...x && { x },
+};
+```
+
+### Get full and relative path
+```js
+console.log(window.location.pathname);  // => "/path"
+console.log(window.location.href);      // => "https://example.com/path"
 ```
 
 ### Pass component as props
@@ -60,88 +142,16 @@ ReactDOM.render(
 )
 ```
 
-### Get full and relative path
+### Props of a functional component
 ```js
-console.log(window.location.pathname);  // => "/path"
-console.log(window.location.href);      // => "https://example.com/path"
-```
+// wrong!!
+const Component = (prop1, prop2) => {}
 
-### Conditionally adding keys to object
-```js
-const object = {};
-if (sth.x) {
-  object.x = sth.x;
+// correct
+const Component = ({ prop1, prop2}) => {}
+
+// correct
+const Component = (props) => {
+    const { prop1, prop2 } = props;
 }
-
-// same as
-const { x } = sth;
-const object = {
-  ...(x && { x }),
-};
-
-// this also works, since `x && { x }` will be first evaluated as Logical Expression
-// then the whole this is evaluated as a SpreadElement
-const { x } = sth;
-const object = {
-  ...x && { x },
-};
-```
-
-### Dispatch a function
-Instead of dispatching an action, if we are using thunk middleware, we can also dispatch a function that takes dispatch as a parameters, so that we can do more complex logic such as ajax and promise. ([example](https://redux.js.org/api/applymiddleware/#example-using-thunk-middleware-for-async-actions))
-```js
-const funcAsAction = dispatch => {
-  dispatch(actionA());
-  someAjaxCall().then(
-    res => dispatch(actionB(res)),
-    err => dispatch(actionC(err))
-  )
-}
-
-store.dispatch(funcAsAction);
-```
-
-### reverse array of object
-```js
-// this won't work (why???)
-let newArray = arrayOfObj.reverse();
-// this will work (why???)
-let newArray = [...arrayOfObj].reverse();
-```
-
-### difference between .fail() and .catch()
-catch will return a new (resolved) promise, whereas fail will return the original promise.
-note that catch(fn) is an alias of then(null, fn).
-```js
-// This will only output "fail"
-$.Deferred()
-  .reject(new Error("something went wrong"))
-  .fail(function() {
-    console.log("fail");
-  })
-  .then(function() {
-    console.log("then after fail");
-  })
-
-// This will output "catch" and "then after catch"
-$.Deferred()
-  .reject(new Error("something went wrong"))
-  .catch(function() {
-    console.log("catch");
-  })
-  .then(function() {
-    console.log("then after catch");
-  })
-```
-
-### destructing from import
-We couldn't use destruct from import, which will get error `ES2015 named imports do not destructure. Use another statement for destructuring after the import`.
-```js
-// this will throw error
-import { a: { b } } from 'x';
-
-// this will work
-import { a } from 'x';
-const { b } = a; 
-
 ```
