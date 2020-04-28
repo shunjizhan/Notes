@@ -11,12 +11,14 @@ var promise = new Promise(function(resolve, reject) {
         reject(Error("It broke"));
     }
 });
+
 // use that promise
-promise.then(function(result) {
+promise
+  .then(function(result) {
     console.log(result);    // "Stuff worked!"
-}, function(err) {
+  }, function(err) {
     console.log(err);       // Error: "It broke"
-});
+  });
 
 
 /* ---------- use promise to create a get function --------- */

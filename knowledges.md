@@ -28,6 +28,48 @@ if `Gemfile.lock` is present, we can do `bundle install` direclty without the --
 
 
 ## Frontend
+### jest `spyOn`
+1) spy on an `object`
+```js
+const obj = {
+  func: x => (true)
+};
+const spy = jest.spyOn(obj, "func");
+```
+
+2) spy on a `class`
+```js
+class Foo {
+  func() {}
+}
+ 
+// THROWS ERROR. Foo has no "func" method. Only an instance of Foo has "func".
+const nope = jest.spyOn(Foo, "func");
+
+// Any call to "func" will trigger this spy.
+const fooSpy = jest.spyOn(Foo.prototype, "func");
+
+// Any call fooInstance makes to "func" will trigger this spy.
+const fooInstance = new Foo();
+const fooInstanceSpy = jest.spyOn(fooInstance, "func");
+
+```
+
+3) spy on `React.Component instance`
+```js
+const component = shallow(<App />);
+// component.instance() // => { func: f(), render: f(), ... }
+const spy = jest.spyOn(component.instance(), "func");
+```
+
+4) spy on `React.Component.prototype`
+```js
+// App.prototype // => { func: f(), render: f(), .. }
+// Any call to "func" from any instance of App will trigger this spy.
+const spy = jest.spyOn(App.prototype, "func");
+```
+
+
 ### How to align text vertically center in a DIV
 just do 
 ```scss
