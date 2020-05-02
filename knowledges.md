@@ -185,10 +185,14 @@ Solution:
 ### find source of command
 sometimes if we can type something on terminal, but it is not an alias, instead it may be a shell defined function, so `which command_name` will return nothing. Instead we can use a more generic command `type command_name`, this will show not only alias but shell defined functions.
 
+### mv all files inclusing hidden files
+if we do `mv from/* /to`, this won't move any hidden files. To move all files including hidden files, we can manually specify hidden files: `mv from/* from.* /to`
+
+## Experience
 ### find out more details about some code
 it is very useful to check the commit so that we can know which pieces work together with this code. For example, if I am looking at function `X`, we can check the last commit that changed/added this function, so that we can see a bigger picture.
 
-### mv all files inclusing hidden files
-if we do `mv from/* /to`, this won't move any hidden files. To move all files including hidden files, we can manually specify hidden files: `mv from/* from.* /to`
+### understand how to use a function/component
+search the codebase to find other places that uses it, or see its test. It might be hard just by looking at the code to figure out how exactly it works, however, actually usage in the codebase, or tests, will have clear real example of how it is supposed to be used.
 
 

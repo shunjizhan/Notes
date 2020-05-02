@@ -499,7 +499,7 @@ def name
   @name
 end
 
-def name=(value)
+def name(value)
   @name = value
 end
 
@@ -564,8 +564,8 @@ peter.jump
 
 ########################### Debug #############################
 some_instance.pry   # this will lead to a termianl
-method(:ng).owner
-method(:ng).source_location
+method(:some_method).owner
+method(:some_method).source_location
 
 
 #----------------------------------------------------------------#

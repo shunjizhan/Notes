@@ -1,4 +1,4 @@
-# Trading In The Zone 交易心理分析
+# 交易心理分析 Trading In The Zone 
 
 ## 认知的动力：联想与客观看待市场
 
