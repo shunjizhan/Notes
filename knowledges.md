@@ -195,4 +195,7 @@ it is very useful to check the commit so that we can know which pieces work toge
 ### understand how to use a function/component
 search the codebase to find other places that uses it, or see its test. It might be hard just by looking at the code to figure out how exactly it works, however, actually usage in the codebase, or tests, will have clear real example of how it is supposed to be used.
 
+### understand some context/concepts
+search the confluence doc to see if there is any documentation about it.
+
 

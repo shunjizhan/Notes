@@ -1,6 +1,26 @@
 # JavaScript Examples
 These are some examples/tricks/knowledges that I learned during everyday coding.
 
+### use named parameter in function definition
+```js
+const test = ({
+  paramWithDefaultValue = 'BTC',
+  param2,
+} = {}) => console.log(paramWithDefaultValue, ' | ', param2);
+
+console.log(test());    // => BTC | undefined
+console.log(test({
+  paramWithDefaultValue: 'ATOM',
+}));                    // => ATOM | undefined
+console.log(test({
+  param2: '20000',
+}));                    // => BTC | 20000
+console.log(test({
+  paramWithDefaultValue: 'ATOM',
+  param2: '100',
+}));                    // => ATOM | 100
+```
+
 ### add spaces to html
 usually html doesn't preserve space, to manually add, we can use:
 ```html
@@ -152,7 +172,7 @@ const Component = ({ prop1, prop2}) => {}
 
 // correct
 const Component = (props) => {
-    const { prop1, prop2 } = props;
+  const { prop1, prop2 } = props;
 }
 ```
 
@@ -164,23 +184,23 @@ const Component = (props) => {
 An `iterable` is a data structure that makes its elements accessible to the public by implementing a method whose key is `Symbol.iterator`. That method is a factory for iterators. That is, it will create `iterators`. An `iterator` is a pointer for traversing the elements of a data structure.
 ```js
 const iterable = {
-    [Symbol.iterator]() {
-        let step = 0;
-        const iterator = {
-            next() {
-                step++;
+  [Symbol.iterator]() {
+    let step = 0;
+    const iterator = {
+      next() {
+        step++;
 
-                switch (step) {
-                    case 1: return { value: 'this', done: false };
-                    case 2: return { value: 'is', done: false };
-                    case 3: return { value: 'iterable', done: false };
-                    default: return { value: undefined, done: true };
-                }
-            }
-        };
+        switch (step) {
+          case 1: return { value: 'this', done: false };
+          case 2: return { value: 'is', done: false };
+          case 3: return { value: 'iterable', done: false };
+          default: return { value: undefined, done: true };
+        }
+      }
+    };
 
-        return iterator;
-    }
+    return iterator;
+  }
 };
 
 let iterator = iterable[Symbol.iterator]();
@@ -276,23 +296,23 @@ function *  generatorFunc() {
 We can largely simply the iterable seen before:
 ```js
 const iterable = {
-    [Symbol.iterator]() {
-        let step = 0;
-        const iterator = {
-            next() {
-                step++;
+  [Symbol.iterator]() {
+    let step = 0;
+    const iterator = {
+      next() {
+        step++;
 
-                switch (step) {
-                    case 1: return { value: 'this', done: false };
-                    case 2: return { value: 'is', done: false };
-                    case 3: return { value: 'iterable', done: false };
-                    default: return { value: undefined, done: true };
-                }
-            }
-        };
+        switch (step) {
+          case 1: return { value: 'this', done: false };
+          case 2: return { value: 'is', done: false };
+          case 3: return { value: 'iterable', done: false };
+          default: return { value: undefined, done: true };
+        }
+      }
+    };
 
-        return iterator;
-    }
+    return iterator;
+  }
 };
 
 for (const val of iterable) {
@@ -316,7 +336,6 @@ for (const val of iterable()) {
   // is 
   // iterable.
 }
-
 ```
 
 It’s possible to create `generators` that never end, for example an `infinite data streams of power series`
