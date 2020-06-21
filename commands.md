@@ -42,6 +42,7 @@ This is my notes of some useful terminal commands & other shortcurs
 `gem list` <br>
 `bundle exec rspec spec`    # run all tests <br>
 `bundle install --force`    # force reinstall all gems <br>
+`bi rspec xxx.spec -e 'some test'`  # only run 'some test' in the test suites
 
 
 # Shortcut

@@ -28,6 +28,41 @@ if `Gemfile.lock` is present, we can do `bundle install` direclty without the --
 
 
 ## Frontend
+### `replace()` on all occurance
+`g` in regex is for global search, meaning it'll match all occurrences.
+
+if we want to replace all `white space` with `_`, `.replace(' ', '_')`will only replace the first occurance. We should do a regex specifying global match `.replace(/ /g, '_')`.
+
+
+### mouse events
+`hover` is not an native event, jqeury `.hover()` actually triggers `mouseenter`/`mouseleave` events.
+
+`mouseover`/`mouseout` events are similar, but one difference is that, `mouseout` will be triggerred when the pointer moves from an element to its descendant, such as from `#parent` to `#child` in the below code. But `mouseleave` won't.
+```html
+<div id="parent">
+  <div id="child">...</div>
+</div>
+```
+
+### `beforeEach()` execution order
+in jest outer `beforeEach()` will run first.
+```js
+describe('outer', () => {
+  beforeEach(() => console.log('outer beforeEach()'));
+
+  describe('inner', () => {
+    beforeEach(() => console.log('inner beforeEach()'));
+
+    it('print out execution order', () => {});
+  });
+});
+
+/* =>
+  outer beforeEach()
+  inner beforeEach()
+*/
+```
+
 ### jest `spyOn`
 1) spy on an `object`
 ```js
@@ -197,5 +232,15 @@ search the codebase to find other places that uses it, or see its test. It might
 
 ### understand some context/concepts
 search the confluence doc to see if there is any documentation about it.
+
+### debug thoughts
+When a bug happens, think about what has changed, usually if it's not flaky, it must be the change that cause the problem. This can include, code change, version change, env change, etc..
+
+Similar to 控制变量法，we can check the minimum diff of { code, version, env } comparing working and failing version, then the problem has a high change to be in these diff { code, version, env }
+
+For example, the bug fails in ruby 2.6 container, but works for ruby 2.2. The code is the same, so the bug must due to Ruby 2.6 syntax change or container env diff with Ruby2.2 local env.
+
+## Reference
+()[https://javascript.info/mousemove-mouseover-mouseout-mouseenter-mouseleave#mouseout-when-leaving-for-a-child]
 
 
