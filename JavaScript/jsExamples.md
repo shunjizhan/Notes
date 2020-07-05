@@ -1,7 +1,7 @@
 # JavaScript Examples
 These are some examples/tricks/knowledges that I learned during everyday coding.
 
-## `===` and `==`
+## Check Equality
 `===`: strict equality: comparing both the type and the value.
 ```js
 5 === 5                         // true
@@ -114,7 +114,7 @@ let newArray = arrayOfObj.reverse();
 let newArray = [...arrayOfObj].reverse();
 ```
 
-## difference between `.fail()` and `.catch()`
+## difference between .fail() and .catch()
 `.catch()` will return a new (resolved) promise, whereas `.fail()` will return the original promise.
 Note that `catch(fn)` is an alias of `then(null, fn)`.
 ```js
