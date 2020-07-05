@@ -11,3 +11,7 @@
 - It seems that how bundle install works is that it first download all `.gemspecs`, and use all these specs to resolve dependeceis, then build the actual gem? Speculated from how the openssl patch did https://gerrit.ikarem.io/c/manage/+/107732
 
 - why after first `bundle install --local`, we don't need --local flag anymore, it will still works. Maybe after first installation the lockfile speficify something?
+
+## Frontend
+### why jest spyon must take an object
+jest only have this function `jest.spyOn(object, methodName)`, but I was looking for something like `jest.spyOn(methodName)` directly, but it doesn't exist.
