@@ -1,9 +1,13 @@
-# promise
-## Basic Syntax
+# Javascript Promises
+**These are some systematic knowledge/examples of JS promises, as well as some relevant ES6 `async/await` syntax.**
+
+
+## basic syntax
 ```js
 new Promise( function(resolve, reject) { /* executor */ }   )
 ```
 Promise是用来管理异步编程的，它本身不是异步的.`new Promise`的时候会立即把executor函数执行，只不过我们一般会在executor函数中处理一个异步操作。
+
 
 ## 延迟绑定
 Promise 采用了回调函数延迟绑定技术，在执行 resolve 函数的时候，回调函数还没有绑定，那么只能推迟回调函数的执行。
@@ -25,6 +29,7 @@ console.log(3)
 // 3
 // 成功 浪里行舟
 ```
+
 
 ## 错误处理
 Promise 对象的错误具有“冒泡”性质，会一直向后传递，直到被 onReject 函数处理或 catch 语句捕获为止。具备了这样“冒泡”的特性后，就不需要在每个 Promise 对象中单独捕获异常了。
@@ -54,6 +59,7 @@ let p2 = p1.then(val => {
 
 p2.catch(err => console.log('error: ', err));
 ```
+
 
 ## promise chain
 Everytime we call `then()`, it will return a new `Promise`, and we can chain them up.
@@ -98,7 +104,8 @@ new Promise(resolve => {
 */
 ```
 
-## `Async/Await`
+
+## async/await
 ```js
 let p1 = new Promise(resolve => {
   setTimeout(() => {
@@ -135,6 +142,7 @@ let p1 = Promise.reject(100);
   console.log(1);  // this will not be executed
 })();
 ```
+
 
 ## 微任务
 基于微任务的技术有 MutationObserver、Promise 以及以 Promise 为基础开发出来的很多其他的技术，本题中resolve()、await fn()都是微任务。不管宏任务是否到达时间，以及放置的先后顺序，每次主线程执行栈为空的时候，引擎会优先处理微任务队列，处理完微任务队列里的所有任务，再去处理宏任务。
@@ -187,6 +195,7 @@ console.log(4);
 */
 ```
 
+
 ## some tricks
 ```js
 Promise.resolve('foo')
@@ -198,27 +207,3 @@ new Promise(resolve => resolve('foo'))
 
 ## reference 
 https://mp.weixin.qq.com/s/zcZwMRg9nymQrp4n6FEldA
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

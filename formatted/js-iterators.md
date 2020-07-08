@@ -1,4 +1,7 @@
 # Iterators and Generators
+**These are some systematic knowledge/examples of JS iterators and generators**
+
+
 ## basic iterator concepts
 An `iterable` is a data structure that makes its elements accessible to the public by implementing a method whose key is `Symbol.iterator`. That method is a factory for iterators. That is, it will create `iterators`. An `iterator` is a pointer for traversing the elements of a data structure.
 ```js
@@ -29,6 +32,7 @@ iterator.next();    // => { value: "iterable", done: false }
 iterator.next();    // => { value: undefined, done: true }
 ```
 
+
 ## iterables
 - `Arrays` and `TypedArrays`
 - `Strings` — iterate over each character or Unicode code-points.
@@ -41,6 +45,7 @@ iterator.next();    // => { value: undefined, done: true }
 ## iterables examples
 ###`for-of` loops
 The `for-of` loops takes an `iterable`, and creates its `iterator`. It keeps on calling the `next()` until done is true.
+
 
 ### destructuring of arrays
 ```js
@@ -57,6 +62,7 @@ const third = iterator.next().value
 iterator.next().value   // Since it was skipped, so it's not assigned
 const last = iterator.next().value
 ```
+
 
 ### the spread operator (...)
 ```js
@@ -79,9 +85,11 @@ newArray.push(2)
 newArray.push(3)
 ```
 
+
 ### Maps and Sets
 - The constructor of a `Map` turns an `iterable` over `[key, value]` pairs into a Map.
 - The constructor of a `Set` turns an `iterable` over elements into a Set.
+
 
 ## basic generator concepts
 ES6 introduced a new way of working with functions and `iterators` in the form of `Generators` (or generator functions). A `generator` is a function that can stop midway and then continue from where it stopped. In short, a `generator` appears to be a function but it behaves like an `iterator`. Instead of returning any value, a generator function always returns a generator object
@@ -110,6 +118,7 @@ function *  generatorFunc() {
   yield 'a';    // Will never be executed. 
 }
 ```
+
 
 ## use of generators
 We can largely simply the iterable seen before:
@@ -170,6 +179,7 @@ console.log(ps.next().value);  // => 2 ^ 2 = 4
 console.log(ps.next().value);  // => 2 ^ 3 = 8
 ......
 ```
+
 
 ## advantages of generators
 - **lazy evaluation**: As seen with `infinite data streams of power series` example, it is possible only because of lazy evaluation. `Lazy Evaluation` is an evaluation model which delays the evaluation of an expression until its value is needed. That is, if we don’t need the value, it won’t exist. It is calculated as we demand it.

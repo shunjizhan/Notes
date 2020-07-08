@@ -1,6 +1,6 @@
 # JavaScript Fragment Knowledges
-These are some examples/tricks/knowledges I learned during everyday coding.
-They are not that systematic, but covers a wide range of topics so can be very useful.
+**These are some examples/tricks/knowledges I learned during everyday coding.**
+**They are not that systematic, but covers a wide range of topics so can be very useful.**
 
 
 ## dynamically generate React tags
