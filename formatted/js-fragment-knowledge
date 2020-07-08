@@ -1,7 +1,32 @@
-# JavaScript Examples
-These are some examples/tricks/knowledges that I learned during everyday coding.
+# JavaScript Fragment Knowledges
+These are some examples/tricks/knowledges I learned during everyday coding.
+They are not that systematic, but covers a wide range of topics so can be very useful.
 
-## Check Equality
+
+## dynamically generate React tags
+method 1: use `React.createElement`
+```js
+const elem = React.createElement(
+  `h${level}`,
+  { className: 'someHeading' },
+  children,
+);
+```
+
+method 2: use dynamic tag
+```js
+const TagName = `h${level}`;
+const elem = (
+  <TagName
+    className='someHeading'
+  >
+    { children }
+  </TagName>
+);
+```
+
+
+## check equality
 `===`: strict equality: comparing both the type and the value.
 ```js
 5 === 5                         // true
@@ -52,7 +77,7 @@ NaN == undefined        // false
 NaN == NaN              // false
 ```
 
-How Js compare:
+How JS compare:
 - Primitives like strings and numbers are compared by their value.
 - Objects like arrays, dates, and plain objects are compared by their reference (memory location).
 
@@ -65,6 +90,7 @@ o1 === o2   // false, same type but different value (reference)
 o1 == o3    // true, they are exactly the same obj
 o1 === o3   // true, they are exactly the same obj
 ```
+
 
 ## use named parameter in function definition
 ```js
@@ -86,6 +112,7 @@ console.log(test({
 }));                    // => ATOM | 100
 ```
 
+
 ## add spaces to html
 usually html doesn't preserve space, to manually add, we can use:
 ```html
@@ -93,6 +120,7 @@ usually html doesn't preserve space, to manually add, we can use:
 &ensp; (2 spaces)
 &emsp; (4 spaces)
 ```
+
 
 ## destructing from import
 We couldn't use destruct from import, which will get error `ES2015 named imports do not destructure. Use another statement for destructuring after the import`.
@@ -106,6 +134,7 @@ const { b } = a;
 
 ```
 
+
 ## reverse array of object
 ```js
 // this won't work (why???)
@@ -113,6 +142,7 @@ let newArray = arrayOfObj.reverse();
 // this will work (why???)
 let newArray = [...arrayOfObj].reverse();
 ```
+
 
 ## difference between .fail() and .catch()
 `.catch()` will return a new (resolved) promise, whereas `.fail()` will return the original promise.
@@ -140,12 +170,12 @@ $.Deferred()
 ```
 
 
-## Dispatch a function
+## dispatch a function
 Instead of dispatching an action, if we are using thunk middleware, we can also dispatch a function that takes dispatch as a parameters, so that we can do more complex logic such as ajax and promise. ([example](https://redux.js.org/api/applymiddleware/#example-using-thunk-middleware-for-async-actions))
 ```js
 const funcAsAction = dispatch => {
   dispatch(actionA());
-  someAjaxCall().then(
+  return someAjaxCall().then(
     res => dispatch(actionB(res)),
     err => dispatch(actionC(err))
   )
@@ -154,7 +184,8 @@ const funcAsAction = dispatch => {
 store.dispatch(funcAsAction);
 ```
 
-## Conditionally adding keys to object
+
+## conditionally adding keys to object
 ```js
 const object = {};
 if (sth.x) {
@@ -175,13 +206,15 @@ const object = {
 };
 ```
 
-## Get full and relative path
+
+## get full and relative path
 ```js
 console.log(window.location.pathname);  // => "/path"
 console.log(window.location.href);      // => "https://example.com/path"
 ```
 
-## Pass component as props
+
+## pass component as props
 1) pass as an instantiated prop
 ```js
 const Messege = ({ value }) => (<span>{ value }</span>);
@@ -227,32 +260,17 @@ ReactDOM.render(
 )
 ```
 
-## Props of a functional component
+
+## props of a functional component
 ```js
 // wrong!!
 const Component = (prop1, prop2) => {}
 
 // correct
-const Component = ({ prop1, prop2}) => {}
+const Component = ({ prop1, prop2 }) => {}
 
 // correct
 const Component = (props) => {
   const { prop1, prop2 } = props;
 }
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
