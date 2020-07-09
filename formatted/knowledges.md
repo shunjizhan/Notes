@@ -10,24 +10,8 @@
 - Compare two tags/branchs/commits in github: `https://github.com/some_repo/compare/tag1...tag2` <br>
 
 
-## Ruby & Rails
-### How Does the ruby versions and the version manager works?
-a couple importance env variables used by RVM:
-- `GEM_HOME`     = /home/ji/.rvm/gems/ruby-2.5.7
-- `GEM_PATH`     = /home/ji/.rvm/gems/ruby-2.5.7:/home/ji/.rvm/gems/ruby-2.5.7@global
-- `MY_RUBY_HOME` = /home/ji/.rvm/rubies/ruby-2.5.7      # ruby binary is in here: [here]/bin/ruby
 
-for Thruby, it uses a env variable $RUBIES to find the ruby binary, so the migrate from RVM to Thruby, do `RUBIES+=(~/.rvm/rubies/*)`, which is to add the path for RVM installed rubies for Thuruby to find. <br>
-
-Actually, the Ruby version management tools are just wrappers that manage path to ruby binary and gems.
-
-### How does `bundle install --local` works
-It fetches gems from `vendor/cache`, (I speculate) then the "install" is to copy such gem to the correct path, according to the env variables. <br>
-
-if `Gemfile.lock` is present, we can do `bundle install` direclty without the --local flag, (I specualte) the lock file is actually the resolved dependencies, which bypass the long "resolving dependencies" process in bundle install.
-
-
-## other
+## miscellaneous
 ### can't checkout some file
 In my particular case, a file's state is 'both modified', so when I do `git checkout` it didn't work, saying 'error: path 'some/path' is unmerged'.
 
@@ -49,7 +33,7 @@ sometimes if we can type something on terminal, but it is not an alias, instead 
 if we do `mv from/* /to`, this won't move any hidden files. To move all files including hidden files, we can manually specify hidden files: `mv from/* from.* /to`
 
 
-## Experience
+## experience
 ### find out more details about some code
 it is very useful to check the commit so that we can know which pieces work together with this code. For example, if I am looking at function `X`, we can check the last commit that changed/added this function, so that we can see a bigger picture.
 
@@ -74,8 +58,24 @@ For example, the bug fails in ruby 2.6 container, but works for ruby 2.2. The co
 In JS, if in a file some variable `x` is used but not defined, maybe some dumb guy defined it globally, try global search `window.x`.
 
 
+## Ruby & Rails
+### How Does the ruby versions and the version manager works?
+a couple importance env variables used by RVM:
+- `GEM_HOME`     = /home/ji/.rvm/gems/ruby-2.5.7
+- `GEM_PATH`     = /home/ji/.rvm/gems/ruby-2.5.7:/home/ji/.rvm/gems/ruby-2.5.7@global
+- `MY_RUBY_HOME` = /home/ji/.rvm/rubies/ruby-2.5.7      # ruby binary is in here: [here]/bin/ruby
 
-## Reference
-()[https://javascript.info/mousemove-mouseover-mouseout-mouseenter-mouseleave#mouseout-when-leaving-for-a-child]
+for Thruby, it uses a env variable $RUBIES to find the ruby binary, so the migrate from RVM to Thruby, do `RUBIES+=(~/.rvm/rubies/*)`, which is to add the path for RVM installed rubies for Thuruby to find. <br>
+
+Actually, the Ruby version management tools are just wrappers that manage path to ruby binary and gems.
+
+### How does bundle install --local works
+It fetches gems from `vendor/cache`, (I speculate) then the "install" is to copy such gem to the correct path, according to the env variables. <br>
+
+if `Gemfile.lock` is present, we can do `bundle install` direclty without the --local flag, (I specualte) the lock file is actually the resolved dependencies, which bypass the long "resolving dependencies" process in bundle install.
+
+
+## reference
+https://javascript.info/mousemove-mouseover-mouseout-mouseenter-mouseleave#mouseout-when-leaving-for-a-child
 
 
