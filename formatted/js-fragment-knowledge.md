@@ -1,6 +1,189 @@
 # JavaScript Fragment Knowledges
-**These are some examples/tricks/knowledges I learned during everyday coding.**
+**These are some examples/tricks/knowledges I learned during everyday coding, for JavaScript or frontend in general.**
 **They are not that systematic, but covers a wide range of topics so can be very useful.**
+
+
+## `replace()` on all occurance
+`g` in regex is for global search, meaning it'll match all occurrences.
+
+if we want to replace all `white space` with `_`, `.replace(' ', '_')` will only replace the first occurance. We should do a regex specifying global match `.replace(/ /g, '_')`.
+
+
+## mouse events
+`hover` is not an native event, jqeury `.hover()` actually triggers `mouseenter`/`mouseleave` events.
+
+`mouseover`/`mouseout` events are similar, but one difference is that, `mouseout` will be triggerred when the pointer moves from an element to its descendant, such as from `#parent` to `#child` in the below code. But `mouseleave` won't.
+```html
+<div id="parent">
+  <div id="child">...</div>
+</div>
+```
+
+
+## `beforeEach()` execution order
+in jest outer `beforeEach()` will run first.
+```js
+describe('outer', () => {
+  beforeEach(() => console.log('outer beforeEach()'));
+
+  describe('inner', () => {
+    beforeEach(() => console.log('inner beforeEach()'));
+
+    it('print out execution order', () => {});
+  });
+});
+
+/* =>
+  outer beforeEach()
+  inner beforeEach()
+*/
+```
+
+
+## jest `spyOn`
+1) spy on an `object`
+```js
+const obj = {
+  func: x => (true)
+};
+const spy = jest.spyOn(obj, "func");
+```
+
+2) spy on a `class`
+```js
+class Foo {
+  func() {}
+}
+ 
+// THROWS ERROR. Foo has no "func" method. Only an instance of Foo has "func".
+const nope = jest.spyOn(Foo, "func");
+
+// Any call to "func" will trigger this spy.
+const fooSpy = jest.spyOn(Foo.prototype, "func");
+
+// Any call fooInstance makes to "func" will trigger this spy.
+const fooInstance = new Foo();
+const fooInstanceSpy = jest.spyOn(fooInstance, "func");
+
+```
+
+3) spy on `React.Component instance`
+```js
+const component = shallow(<App />);
+// component.instance() // => { func: f(), render: f(), ... }
+const spy = jest.spyOn(component.instance(), "func");
+```
+
+4) spy on `React.Component.prototype`
+```js
+// App.prototype // => { func: f(), render: f(), .. }
+// Any call to "func" from any instance of App will trigger this spy.
+const spy = jest.spyOn(App.prototype, "func");
+```
+
+
+## How to align text vertically center in a DIV
+just do 
+```scss
+line-height: $height-of-parent;
+```
+
+
+## How to include external files in Create-React-App
+put 
+```js
+<script src='lib/some-library.min.js'></script>
+``` 
+in `public/index.html`, where `lib/` folder is in `public/`, since create-react-app only serves all the assets in `public/` but not other places such as `src/`.
+
+Similarly, if there are some img in `src/`, this won't work
+```html
+<img src="../../img/goku.jpg" />
+```
+instead we need to do 
+```html
+<img src={ require("../../img/goku.jpg") } />
+```
+
+
+## Run a npm packge binary from CLI and package.json
+Usually the binary is in`node_modules/.bin`, it is hard to run because it involves dealing with $PATH stuff, which is really annoying. Now we can use `npx <command>`, which will take care of $PATH automatically. For example 
+```
+$ npm i -D webpack
+$ npx webpack ...
+```
+On the other hand, scripts in `package.json` actually have access to npm libraries, so we can do `npm run compile` if we add this to `package.json`
+```json
+{
+  "scripts": {
+    "compile": "webpack"
+  },
+}
+```
+
+
+## Import a module from npm package
+Suppose `jscodeshift` is a package in `node_modules`, and `jscodeshift/dist/testUtils` is a file that export `defineTest()`, then we can do something like
+```js
+import { defineTest } from "jscodeshift/dist/testUtils";
+```
+
+
+## run jest on a particular test
+`yarn run jest ... -t 'test name'`
+
+
+## JS object key type
+we can't have integer keys. JS will convert the integer to a string. It is not recommended to use int as key, since this could cause problem due to JS rounding stuff.
+```js
+const test = {
+  100: 'BTC',
+};
+test[100]   // => BTC
+test['100'] // => BTC
+typeof Object.keys(test)[0]   // => string
+```
+
+
+## Coercion to Boolean Values
+usually we can use `!!` to coercion variable to Boolean Values
+```js
+!!'hello'  // => true
+!!{}       // => true
+!![]       // => true
+!!1       // => true
+
+!!''       // => false
+!!null     // => false
+!!undefined // => false
+!!0        // => false
+```
+
+
+## short circuit evaluation
+`A && B` returns the value A if A can be coerced into false; otherwise, it returns B.
+```js
+true && 'hello'   // => hello
+'hello' && true   // => true
+'hello' && false  // => false
+'hello' && null  // => null
+null && 'hello'  // => null
+```
+
+`A || B` returns the value A if A can be coerced into true; otherwise, it returns B.
+```js
+true || 'hello'   // => true
+'hello' || true   // => hello
+null || false  // => false
+false || 'hello'  // => hello
+```
+
+short circuit evaluation examples
+```js
+const x = y || 'defaultValue';
+const x = someCondition && 'BTC';
+someCondition && doSth();
+```
 
 
 ## console.log a function definition
