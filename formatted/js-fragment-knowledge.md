@@ -3,6 +3,13 @@
 **They are not that systematic, but covers a wide range of topics so can be very useful.**
 
 
+## console.log a function definition
+This could sometimes be helpful in debugging
+```js
+console.log(func.toString());
+```
+
+
 ## dynamically generate React tags
 method 1: use `React.createElement`
 ```js

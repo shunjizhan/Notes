@@ -1,4 +1,4 @@
-# Javascript Promises
+# JavaScript Promises
 **These are some systematic knowledge/examples of JS promises, as well as some relevant ES6 `async/await` syntax.**
 
 
@@ -27,7 +27,7 @@ console.log(3)
 // 1
 // 2
 // 3
-// 成功 浪里行舟
+// BTC
 ```
 
 
