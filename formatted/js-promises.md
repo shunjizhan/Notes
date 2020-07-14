@@ -2,11 +2,25 @@
 **These are some systematic knowledge/examples of JS promises, as well as some relevant ES6 `async/await` syntax.**
 
 
-## basic syntax
+## basic concepts
+basic syntax
 ```js
 new Promise( function(resolve, reject) { /* executor */ }   )
 ```
 Promise是用来管理异步编程的，它本身不是异步的.`new Promise`的时候会立即把executor函数执行，只不过我们一般会在executor函数中处理一个异步操作。
+
+basic example
+```js
+let promise = new Promise((resolve, reject) => {
+    // do a thing, possibly async, then…
+    if (everythingWorkedWell) {
+        resolve("Stuff worked!");
+    } else {
+        reject(Error("It broke"));
+    }
+});
+
+```
 
 
 ## 延迟绑定
@@ -204,6 +218,56 @@ new Promise(resolve => resolve('foo'))
 ```
 
 
+## to be continued... TODO
+
+## wait until all promises are resovled
+```js
+let promise1 = Promise.resolve(3);
+let promise2 = 42;
+let promise3 = new Promise((resolve, reject) => {
+    setTimeout(resolve, 100, 'foo');
+});
+
+Promise.all([promise1, promise2, promise3]).then(console.log); // => [3, 42, "foo"]
+```
+
+## use promise to create a get function
+this example is kinda old though...
+```js
+function get(url) {
+  return new Promise(function(resolve, reject) {
+    var req = new XMLHttpRequest();
+    req.open('GET', url);
+
+    req.onload = function() {
+      if (req.status == 200) {
+        resolve(req.response);
+      } else {
+        reject(Error(req.statusText));
+      }
+    };
+
+    req.onerror = function() {
+      reject(Error("Network Error"));
+    };
+
+    req.send();
+  });
+}
+
+// use it
+get('story.json')
+  .then(response => {
+    return JSON.parse(response);
+  }, error => {
+    console.error("Failed!", error);
+  });
+
+// make it a function
+function getJSON(url) {
+  return get(url).then(JSON.parse);
+}
+```
 
 ## reference 
 https://mp.weixin.qq.com/s/zcZwMRg9nymQrp4n6FEldA
