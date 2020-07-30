@@ -34,9 +34,26 @@ if we do `mv from/* /to`, this won't move any hidden files. To move all files in
 
 
 ## experience
+### quickly scroll back to the previous edit position
+If we edited some place in the file, and scroll to somewhere else, it might take a long time to find where we previously was if the file is a couple thousand lines long. There are two tricks that can quickly find where we were previously.
+1) If you have git tools enabled, just scroll fast and find the green/yellow bar indicating the edit. Finding the extra color is much faster than reading the code line by line trying to figure out which line was just added.
+2) Magical commands: `cmd + Z` then `cmd + shift + z`. 
+
+
 ### find out more details about some code
 it is very useful to check the commit so that we can know which pieces work together with this code. For example, if I am looking at function `X`, we can check the last commit that changed/added this function `X`, so that we can see a bigger picture.
 
+Also, when search for related code with code piece `X`, try to find more **distinct** feature of `X`. For example, when searching other codes that interact with this html tag,
+```html
+<button id='xxx' class='someButton'>click</button>
+```
+searching for 'xxx' will be more efficient than searching 'click' or 'someButton'.
+
+In this second example,
+```html
+<button class='someButton'>reset feature X</button>
+```
+the button text 'reset feature X' is very specific. If we see this button on UI, and want to find the source code, searching for 'reset feature X' will likely find it and return only this button. On the other hand, if we search 'someButton', the search result might return multiple buttons, and we need extra time to find this particular one.
 
 ### understand how to use a function/component
 search the codebase to find other places that uses it, or see its test. It might be hard just by looking at the code to figure out how exactly it works, however, actually usage in the codebase, or tests, will have clear real example of how it is supposed to be used.

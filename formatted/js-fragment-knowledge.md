@@ -3,7 +3,45 @@
 **They are not that systematic, but covers a wide range of topics so can be very useful.**
 
 
-## `replace()` on all occurance
+## console.log tricks
+instead of doing
+```js
+console.log('----- here -----')
+console.log('something')
+console.log('----------')
+```
+we can do it more "console" way
+```js
+console.group('here')
+console.log('something')
+console.groupEnd()
+```
+
+timing in console
+```js
+console.time()
+// so something
+console.timeEnd()
+```
+
+
+## print the object in that snapshot
+if we do this, it will print the latest (future) value of object, sounds like **quatum physics**, where somehow history and future are connected!!
+```js
+let obj = { a: 1 };
+console.log(obj);   // => 2
+obj.a = 2;
+```
+to print out the actual value of `obj` in that snapshot, we can do
+```js
+let obj = { a: 1 };
+console.table(obj);   // => print a table showing a: 1
+obj.a = 2;
+```
+
+
+
+## replace() on all occurance
 `g` in regex is for global search, meaning it'll match all occurrences.
 
 if we want to replace all `white space` with `_`, `.replace(' ', '_')` will only replace the first occurance. We should do a regex specifying global match `.replace(/ /g, '_')`.
@@ -20,7 +58,7 @@ if we want to replace all `white space` with `_`, `.replace(' ', '_')` will only
 ```
 
 
-## `beforeEach()` execution order
+## beforeEach() execution order
 in jest outer `beforeEach()` will run first.
 ```js
 describe('outer', () => {
@@ -40,7 +78,7 @@ describe('outer', () => {
 ```
 
 
-## jest `spyOn`
+## jest spyOn
 1) spy on an `object`
 ```js
 const obj = {
@@ -82,14 +120,14 @@ const spy = jest.spyOn(App.prototype, "func");
 ```
 
 
-## How to align text vertically center in a DIV
+## how to align text vertically center in a DIV
 just do 
 ```scss
 line-height: $height-of-parent;
 ```
 
 
-## How to include external files in Create-React-App
+## how to include external files in Create-React-App
 put 
 ```js
 <script src='lib/some-library.min.js'></script>
@@ -106,7 +144,7 @@ instead we need to do
 ```
 
 
-## Run a npm packge binary from CLI and package.json
+## run a npm packge binary from CLI and package.json
 Usually the binary is in`node_modules/.bin`, it is hard to run because it involves dealing with $PATH stuff, which is really annoying. Now we can use `npx <command>`, which will take care of $PATH automatically. For example 
 ```
 $ npm i -D webpack
@@ -122,7 +160,7 @@ On the other hand, scripts in `package.json` actually have access to npm librari
 ```
 
 
-## Import a module from npm package
+## import a module from npm package
 Suppose `jscodeshift` is a package in `node_modules`, and `jscodeshift/dist/testUtils` is a file that export `defineTest()`, then we can do something like
 ```js
 import { defineTest } from "jscodeshift/dist/testUtils";

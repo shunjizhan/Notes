@@ -218,7 +218,8 @@ new Promise(resolve => resolve('foo'))
 ```
 
 
-## to be continued... TODO
+## to be continued... 
+TODO: add remaining notes here
 
 ## wait until all promises are resovled
 ```js
