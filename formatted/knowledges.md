@@ -63,12 +63,22 @@ search the codebase to find other places that uses it, or see its test. It might
 search the confluence doc to see if there is any documentation about it.
 
 
-### debug tricks
+### debug idea 1
 When a bug happens, think about what has changed, usually if it's not flaky, it must be the change that cause the problem. This can include, code change, version change, env change, etc..
 
 Similar to 控制变量法，we can check the minimum diff of { code, version, env } comparing working and failing version, then the problem has a high change to be in these diff { code, version, env }
 
 For example, the bug fails in ruby 2.6 container, but works for ruby 2.2. The code is the same, so the bug must due to Ruby 2.6 syntax change or container env diff with Ruby2.2 local env.
+
+
+### debug idea 2
+try to find more err msg in logs. For example, either the browser console or the terminal will print out helpful information. Further more, sometimes logs are not logged to console/terminal directly, but write to some local log file (which might be indicated on termial about which file to look for), so we can check the log file for more detailed information.
+
+
+### empty cache when try something new
+There are may weird 'bug' doesn't logically doesn't make sense. Sometimes this is causing by cache so that our newest updated is not loaded. So if something weird happen, first we should make sure the new code is actually running, by deleting old build, empty cache, etc...
+
+For example, once I added some new things and run deploy again, but the new thing didn't show up on the page. I solved it by deleting the old `build/` folder and run the deploy again, then it worked!
 
 
 ### dumb global variable

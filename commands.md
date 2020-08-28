@@ -75,6 +75,7 @@ This is my notes of some useful terminal commands & other shortcurs
 `cmd + W`           # close current tab <br>
 `cmd + Shift + W`   # close all <br>
 `cmd + ,`           # go to options <br>
+`cmd + ~`           # switch window of the same app (doesn't work in full screen mode) <br>
 
 #### MAC
 `cmd + Option + D`  # toggle Mac dock <br>
