@@ -45,7 +45,7 @@ This is my notes of some useful terminal commands & other shortcurs
 `bi rspec xxx.spec -e 'some test'`  # only run 'some test' in the test suites
 
 
-# Shortcut
+# Useful Shortcut
 #### Editor
 `ctrl + shift + K`  # remove whole line <br>
 `ctrl + cmd + G`    # selectAll <br>
@@ -67,6 +67,7 @@ This is my notes of some useful terminal commands & other shortcurs
 `cmd + shift + ⇧ / ⇩`      # select line from top/bottom up to current cursor<br>
 `cmd + shift + option + ⇦ / ⇨`      # shrink/expand selection <br>
 `ctrl + cmd + ⇦ / ⇨`       # move tabs to left/right window (VSCode) <br>
+`shift + option + F`        # reformat file <br>
 
 #### Chrome
 `cmd + ⇦ / ⇨`      # go back/front <br>
