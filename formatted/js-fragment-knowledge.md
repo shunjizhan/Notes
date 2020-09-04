@@ -2,6 +2,26 @@
 **These are some examples/tricks/knowledges I learned during everyday coding, for JavaScript or frontend in general.**
 **They are not that systematic, but covers a wide range of topics so can be very useful.**
 
+## useSelector and useDispatch
+Interestingly, these two doesn't need to be used on a connected component. Also, unlike `useEffect`, they are **NOT** from `React`, but from `react-redux`.    import them from wrong place, otherwise the error msg is very confusing: `Object(...) is not a function`.
+```js
+import {
+  useSelector,
+  useDispatch,
+} from 'react-redux';   // NOT React!!
+```
+
+## why does the reducer require immutable data
+When an action has been dispatched, in order to determine if component should be updated, Redux checks if the state has changed or not by checking if the reference to the state object has changed. If we modify the state in place, the reference will be the same.
+
+So, **never mutate state in reducers, return a new state object instead**, such as:
+```js
+return Object.assign({}, oldState, { modalOpen: true });
+```
+or 
+```js
+return { ...oldState, modalOpen: true };
+```
 
 ## console.log tricks
 instead of doing
@@ -20,25 +40,33 @@ console.groupEnd()
 timing in console
 ```js
 console.time()
-// so something
+// do something
 console.timeEnd()
 ```
 
 
-## print the object in that snapshot
-if we do this, it will print the latest (future) value of object, sounds like **quatum physics**, where somehow history and future are connected!!
+## log the object in that snapshot
+what will happend if we console.log like this? 
 ```js
 let obj = { a: 1 };
 console.log(obj);   // => 2
 obj.a = 2;
 ```
-to print out the actual value of `obj` in that snapshot, we can do
+This will log the latest (future) value of object, sounds like **quatum physics**, where somehow history and future are connected!!
+
+To log the actual value of `obj` in that snapshot, we can do
 ```js
 let obj = { a: 1 };
-console.table(obj);   // => print a table showing a: 1
+console.table(obj);   // => log a table showing a: 1
 obj.a = 2;
 ```
 
+or
+```js
+let obj = { a: 1 };
+console.log(JSON.parse(JSON.stringify(obj)));   // => log { a: 1 }
+obj.a = 2;
+```
 
 
 ## replace() on all occurance
@@ -502,3 +530,6 @@ const Component = (props) => {
   const { prop1, prop2 } = props;
 }
 ```
+
+## references
+[](https://blog.jakoblind.no/react-component-not-updating/)

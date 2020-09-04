@@ -18,10 +18,10 @@ This is my notes of some useful terminal commands & other shortcurs
 `ssh something -A`  # -A will forward identity <br>
 
 ### Alias and Env
-##### print out env variables
+#### print out env variables
 `printenv` 
 
-##### sudo with preserved user env variable
+#### sudo with preserved user env variable
 `sudo -E [command]`<br>
 `sudo --preserve-env [command]`
 
@@ -91,53 +91,57 @@ This is my notes of some useful terminal commands & other shortcurs
 
 
 # Git
-##### rebase interactively top n commit, @ is shortcut for HEAD
+#### get line history of line XXX of a file YYY
+`git log -LXXX,+1:'path_to_YYY'`
+`git log -L169,+1:'package.json'`   # example
+
+#### rebase interactively top n commit, @ is shortcut for HEAD
 `git rebase -i @~n`
 
-##### reset the last changes to staged from commited state 
+#### reset the last changes to staged from commited state 
 `git reset --soft HEAD~1`   
 
-##### git diff between two branches (of specific file)
+#### git diff between two branches (of specific file)
 `git diff [branch_1]..branch_2 [-- filename]`   
 `git diff origin/ruby_2_3..origin/ruby_2_2 -- lib/ostruct.rb`   # example
 
-##### squash current commit to previous commit
+#### squash current commit to previous commit
 `git commit --amend`    
 
-##### add each chunk interactively
+#### add each chunk interactively
 `git add . -p`          
 
-##### cherry-pick/checkout some file from local branch/commit
+#### cherry-pick/checkout some file from local branch/commit
 `git cherry-pick/checkout branch/commit -- filename`<br>
 
-##### cherry-pick a remote branch
+#### cherry-pick a remote branch
 `git fetch remote_url && git cherry-pick FETCH_HEAD` <br>
 
-##### clean all untracked files
+#### clean all untracked files
 `git clean -f -d`
 
-##### pretty print log
+#### pretty print log
 `git log --pretty=oneline --graph --decorate --all`
 
-##### git log in time range
+#### git log in time range
 `git log --since='FEB 10 2016' --until='FEB 19 2016'`
 
-##### list all git alias
+#### list all git alias
 `git config -l | grep alias | sed 's/^alias\.//g'`
 
-##### seach git log with some keyword
+#### seach git log with some keyword
 `git log -S"key_word"`
 
-##### git clean untracked files
+#### git clean untracked files
 `git clean -f -d`   # clean all
 `git clean -f filename` # celan specific file
 
-##### hard reset master to sync with remote
+#### hard reset master to sync with remote
 ```
 git reset --hard origin/master
 git pull origin master
 ```
 
-##### checkout last branch
+#### checkout last branch
 `git checkout -`
 
