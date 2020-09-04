@@ -1,7 +1,7 @@
 # Commands
 This is my notes of some useful terminal commands & other shortcurs
 
-# Terminal
+## Terminal
 `ctrl + R`    # search previous command <br>
 `find [path] | grep [filename]`     # find filenames that contain [filename] in [path] <br>
 `ps -ax`    # list all process <br>
@@ -13,15 +13,15 @@ This is my notes of some useful terminal commands & other shortcurs
 `command1 | xargs command2`     # pass result from command1 to command 2 as argument <br>
 `chmod +x my_script.sh`         # add execution permission <br>
 
-### SSH
+## SSH
 `ssh-add -K ~/.ssh/id_rsa`  # forward identity before ssh <br>
 `ssh something -A`  # -A will forward identity <br>
 
-### Alias and Env
-#### print out env variables
+## Alias and Env
+### print out env variables
 `printenv` 
 
-#### sudo with preserved user env variable
+### sudo with preserved user env variable
 `sudo -E [command]`<br>
 `sudo --preserve-env [command]`
 
@@ -34,7 +34,7 @@ This is my notes of some useful terminal commands & other shortcurs
 
 
 
-# Ruby and Rails
+## Ruby and Rails
 `rvm list` <br>
 `rvm use *[--default] [ruby version number]` <br>
 `gem info *[gem package name]` <br>
@@ -45,8 +45,8 @@ This is my notes of some useful terminal commands & other shortcurs
 `bi rspec xxx.spec -e 'some test'`  # only run 'some test' in the test suites
 
 
-# Useful Shortcut
-#### Editor
+## Useful Shortcut
+### Editor
 `ctrl + shift + K`  # remove whole line <br>
 `ctrl + cmd + G`    # selectAll <br>
 `DEL (fn + BACK)`   # delete backwards <br>
@@ -69,79 +69,79 @@ This is my notes of some useful terminal commands & other shortcurs
 `ctrl + cmd + ⇦ / ⇨`       # move tabs to left/right window (VSCode) <br>
 `shift + option + F`        # reformat file <br>
 
-#### Chrome
+### Chrome
 `cmd + ⇦ / ⇨`      # go back/front <br>
 
-#### General
+### General
 `cmd + W`           # close current tab <br>
 `cmd + Shift + W`   # close all <br>
 `cmd + ,`           # go to options <br>
 `cmd + ~`           # switch window of the same app (doesn't work in full screen mode) <br>
 
-#### MAC
+### MAC
 `cmd + Option + D`  # toggle Mac dock <br>
 `cmd + shift + G`   # (in finder) go to folder <br>
 `ctrl + ⇦ / ⇨`     # switch window <br>
 `ctrl + ⇧`         # show windows overview <br>
 `cmd + ctrl + q`    # sleep <br>
 
-#### Vim
+### Vim
 `gw` auto format commit msg (after selected all the lines) <br>
 `dd` to cut the line and `p` to paste <br>
 
 
-# Git
-#### get line history of line XXX of a file YYY
+## Git
+### get line history of line XXX of a file YYY
 `git log -LXXX,+1:'path_to_YYY'`
 `git log -L169,+1:'package.json'`   # example
 
-#### rebase interactively top n commit, @ is shortcut for HEAD
+### rebase interactively top n commit, @ is shortcut for HEAD
 `git rebase -i @~n`
 
-#### reset the last changes to staged from commited state 
+### reset the last changes to staged from commited state 
 `git reset --soft HEAD~1`   
 
-#### git diff between two branches (of specific file)
+### git diff between two branches (of specific file)
 `git diff [branch_1]..branch_2 [-- filename]`   
 `git diff origin/ruby_2_3..origin/ruby_2_2 -- lib/ostruct.rb`   # example
 
-#### squash current commit to previous commit
+### squash current commit to previous commit
 `git commit --amend`    
 
-#### add each chunk interactively
+### add each chunk interactively
 `git add . -p`          
 
-#### cherry-pick/checkout some file from local branch/commit
+### cherry-pick/checkout some file from local branch/commit
 `git cherry-pick/checkout branch/commit -- filename`<br>
 
-#### cherry-pick a remote branch
+### cherry-pick a remote branch
 `git fetch remote_url && git cherry-pick FETCH_HEAD` <br>
 
-#### clean all untracked files
+### clean all untracked files
 `git clean -f -d`
 
-#### pretty print log
+### pretty print log
 `git log --pretty=oneline --graph --decorate --all`
 
-#### git log in time range
+### git log in time range
 `git log --since='FEB 10 2016' --until='FEB 19 2016'`
 
-#### list all git alias
+### list all git alias
 `git config -l | grep alias | sed 's/^alias\.//g'`
 
-#### seach git log with some keyword
+### seach git log with some keyword
 `git log -S"key_word"`
 
-#### git clean untracked files
+### git clean untracked files
 `git clean -f -d`   # clean all
 `git clean -f filename` # celan specific file
 
-#### hard reset master to sync with remote
+### hard reset master to sync with remote
 ```
 git reset --hard origin/master
 git pull origin master
 ```
 
-#### checkout last branch
+### checkout last branch
 `git checkout -`
 
