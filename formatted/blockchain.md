@@ -1,7 +1,7 @@
 # Blockchain Related Mid-Advanced Topics
 
-
 ## Bip39
+TODO: add notes
 
 
 ## 杠杆代币

@@ -34,7 +34,7 @@ This is my notes of some useful terminal commands & other shortcurs
 
 
 
-# Ruby & Rails
+# Ruby and Rails
 `rvm list` <br>
 `rvm use *[--default] [ruby version number]` <br>
 `gem info *[gem package name]` <br>
