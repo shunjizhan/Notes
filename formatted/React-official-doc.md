@@ -1,52 +1,64 @@
-/* ----------------------------------------------- */
-/* --------------- Main Concepts ----------------- */
-/* ----------------------------------------------- */
-// Note: Always start component names with a capital letter.
-// React treats components starting with lowercase letters as DOM tags. For example, <div /> represents an HTML div tag, but < Welcome /> represents a component and requires Welcome to be in scope.
+# React Official Doc
+This is some extraction and refinement from react official doc.
 
-// All React components must act like pure functions with respect to their props.
+## Some Gotchas
+Always start component names with a capital letter.
+React treats components starting with lowercase letters as DOM tags. For example, `<div />` represents an HTML div tag, but `<Welcome />` represents a component and requires `Welcome` to be in scope.
+
+All React components must act like pure functions with respect to their props.
   
-// There are three things you should know about setState():
-// 1) Do Not Modify State Directly, use setState()
-// 2) State Updates May Be Asynchronous.React may batch multiple setState() calls into a single update for performance.Because this.props and this.state may be updated asynchronously, you should not rely on their values for calculating the next state.
-// for example this might fail:
+There are three things you should know about setState():
+1) Do not modify state directly, use `setState()`
+2) states updates may be async. React may batch multiple `setState()` calls into a single update for performance. Because `this.props` and `this.state` may be updated asynchronously, you should not rely on their values for calculating the next state.
+
+for example this might fail:
+```jsx
 this.setState({
   counter: this.state.counter + this.props.increment,
 });
-// instead, use a second form of setState() that accepts a function rather than an object. 
+```
+
+instead, use a second form of `setState()` that accepts a function rather than an object. 
+```jsx
 this.setState((state, props) => ({
   counter: state.counter + props.increment
 }));
-// 3) State Updates are Merged. When you call setState(), React merges the object you provide into the current state.
+```
+
+3) State Updates are Merged. When you call setState(), React merges the object you provide into the current state.
 
 
-/* --------------
-  The Data Flows Down
--------------- */
-// Neither parent nor child components can know if a certain component is stateful or stateless, and they shouldn’t care whether it is defined as a function or a class. This is why state is often called local or encapsulated.It is not accessible to any component other than the one that owns and sets it.
+## The Data Flows Down
+Neither parent nor child components can know if a certain component is stateful or stateless, and they shouldn’t care whether it is defined as a function or a class. This is why state is often called local or encapsulated. It is not accessible to any component other than the one that owns and sets it.
 
 
-/* --------------
-  3 ways to give function 'this' context
--------------- */
-// 1) use bind
+## 3 ways to give function 'this' context
+1) use bind
+```js
 this.handleClick = this.handleClick.bind(this);
-// 2) use fat arrow function in definition. Best way!
+```
+
+2) use fat arrow function in definition. Best way!
+```js
 handleClick = () => {
   console.log('this is:', this);
 }
-// 3) wrap it up using an additional function when passing to children. The problem with this syntax is that a different callback is created each time the it renders.
-<button onClick={e => this.handleClick(e)}>
+```
+
+3) wrap it up using an additional function when passing to children. The problem with this syntax is that a different callback is created each time the it renders.
+
+```jsx
+<button onClick={ e => this.handleClick(e) }>
   Click me
 </button>
+```
 
 
-/* --------------
-  2 ways to pass id to event handler
--------------- */
-<button onClick={(e) => this.deleteRow(id, e)}>Delete Row</button>
-<button onClick={this.deleteRow.bind(this, id)}>Delete Row</button>
-
+## 2 ways to pass id to event handler
+```jsx
+<button onClick={ e => this.deleteRow(id, e) }>Delete Row</button>
+<button onClick={ this.deleteRow.bind(this, id) }>Delete Row</button>
+```
 
 /* --------------
   Conditional Rendering
@@ -337,7 +349,7 @@ function Example() {
 
     When you call useEffect, you’re telling React to run your “effect” function after flushing changes to the DOM.
     
-    Effects are declared inside the component so they have access to its props and state. 
+    Effects are declared inside the component so they have access to its props and state.By default, React runs the effects after every render — including the first render. 
 
     By default, React runs the effects after every render — including the first render.
   */

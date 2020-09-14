@@ -2,14 +2,103 @@
 **These are some examples/tricks/knowledges I learned during everyday coding, for JavaScript or frontend in general.**
 **They are not that systematic, but covers a wide range of topics so can be very useful.**
 
+
+## Javascript Runtime And Task Scheduling
+`Javascript runtime` refers to where your javascript code is executed, such as google chrome, in which case the `javascript engine` is `v8`. All JavaScript engines implement specification of the language provide by ECMAScript, such engine works inside a JS Runtime which provides **additional features** to our scripts. For example, V8 does not have `WebAPIs`, which are given by runtime. In chrome browser JS runtime, browser provides `WebAPIs`, while in `Node` runtime, `WebAPIs` are given by C++ libraries. Other broswer JS runtime features are `AJAX`, and the `DOM tree` (node runtime doesn't have them).
+
+Javascript code is executed in **single thread**, but JS runtime is not: thread pool exists in JS runtime.
+
+JS code is first converted to machine code by the JS engine. `memory heap` (in JS engine) stores all the variables and `call stack` (in JS engine) stores the actionable item such as function calls. `call stack` executes single-threaded with LIFO order, and when it sees a web api call, such as event listeners, HTTP/AJAX requests, or timing functionsit, it sends it to the `web api container` and pops it of from the stack. After a task in web api container is finished, it could put callbacks into the `callback queue`. The `event loop` will keep running and whenever the call stack is empty, it will pop callbacks from the callback queue (FIFO) and added it to the call stack.
+
+Javascript can only execute one function at a time, whatever is at top of the stack, it is a `synchronous` language. But because of the JS running task scheduling, it has the ability to run in an `aync` manner, yet still being a `sync` language, this is very cool!
+A huge advantage is that JS is an `non-blocking language`, since most blocking executions (such as I/O) is performed via events and callbacks, and is mostly handled in JS run time, so won't block the main thread (call stack). If anything goes wrong, such as the server never respond, JS running will just never put a callback into the call back queue, and the main thread won't care about it.
+
+Note that in a `setTimeout` call which waits for x seconds, the callback is put to the callback queue after x seconds, but won't execuete until the call stack is empty.
+```js
+while (true) {}
+setTimeout(() => console.log('!!!'), 0);  // will never console log!
+```
+
+ES6 also introdeced `job queue`, which is reserved for `promise` (and `async/await`). Job queue has high priority in executing callbacks, compared to callback queue, so `thenable` callbacks will be excuted prior to other callbacks.
+
+```js
+const timeout = () => console.log('timeout');
+const end = () => console.log('end');
+
+console.log('start');
+setTimeout(timeout, 0);
+Promise
+  .resolve('promise')
+  .then(console.log)
+end();
+
+/* ==>
+  start
+  end
+  promise
+  timeout
+*/
+```
+
+
+## scopes
+Each function creates a new `local scope`, which is a `function scope`. Every variable declared in this scope is a `local variable`. 
+Any variable declared in a `function scope` can’t be accessed outside that function scope.
+```js
+function f() {
+  var x = 1;
+  let y = 2;
+  const z = 3;
+}
+console.log(x); // => ReferenceError: x is not defined
+console.log(y); // => ReferenceError: y is not defined
+console.log(z); // => ReferenceError: z is not defined
+```
+
+ES6 introduced `block scope` by using the `let` and `const` keywords, but block scope does not apply to `var` keyword. `var` variable is global as long as it's declared outside a function.
+```js
+if (true) {
+  var x = 1;
+  let y = 2;
+  const z = 3;
+}
+console.log(x); // => 1
+console.log(y); // => ReferenceError: y is not defined
+console.log(z); // => ReferenceError: z is not defined
+```
+
+so, `let` is the ideal solution to use in `for loop`, since `let` variable won't pollute outside scope.
+```js
+for (let i = 0; i < 2; i++) { ... }
+```
+
+
+## void keyword
+The `void` operator evaluates the given expression and then returns undefined.
+It is often used merely to obtain the `undefined` primitive value, usually using `void(0)` or `void 0`.
+
+example: when using an IIFE, `void` can be used to force the function keyword to be treated as an expression instead of a declaration.
+```js
+void function iife() {
+  // do sth
+}();
+```
+
+
+## Map vs Object
+- A `Map` is an iterable, so it can be directly iterated. It iterates its elements in insertion order — a `for...of` loop returns an array of `[key, value]` for each iteration.
+- A `Map`'s keys can be any value (including functions, objects, or any primitive), while the keys of an Object must be either a `String` or a `Symbol`.
+- `myMap.has(key)` and `myMap.size` are very handy.
+
 ## useSelector and useDispatch
-Interestingly, these two doesn't need to be used on a connected component. Also, unlike `useEffect`, they are **NOT** from `React`, but from `react-redux`.    import them from wrong place, otherwise the error msg is very confusing: `Object(...) is not a function`.
+Interestingly, these two doesn't need to be used on a connected component. Also, unlike `useEffect`, they are **NOT** from `React`, but from `react-redux`. Don't import them from the wrong place, otherwise the error msg is very confusing: `Object(...) is not a function`.
 ```js
 import {
   useSelector,
   useDispatch,
 } from 'react-redux';   // NOT React!!
 ```
+
 
 ## why does the reducer require immutable data
 When an action has been dispatched, in order to determine if component should be updated, Redux checks if the state has changed or not by checking if the reference to the state object has changed. If we modify the state in place, the reference will be the same.
@@ -22,6 +111,7 @@ or
 ```js
 return { ...oldState, modalOpen: true };
 ```
+
 
 ## console.log tricks
 instead of doing
@@ -533,3 +623,12 @@ const Component = (props) => {
 
 ## references
 [](https://blog.jakoblind.no/react-component-not-updating/)
+[](https://medium.com/edge-coders/function-scopes-and-block-scopes-in-javascript-25bbd7f293d7#:~:text=var%20vs.-,let,accessed%20outside%20that%20function%20scope.&text=A%20variable%20declared%20with%20var%20in%20a%20block%20scope,outside%20of%20that%20block%20scope.)
+[](https://dev.to/ale3oula/the-hor-r-o-r-scope-global-local-and-block-scope-in-js-37a1#:~:text=A%20variable%20exists%20inside%20or,the%20program%2C%20including%20inside%20blocks.)
+[](https://stackoverflow.com/questions/18541940/map-vs-object-in-javascript#:~:text=Object%20%3A%20A%20data%20structure%20in,stored%20as%20key%20value%20pairs.&text=ES6%20Map%20%3A%20A%20data%20structure,be%20in%20any%20data%20type.)
+[](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map)
+[](https://medium.com/@olinations/the-javascript-runtime-environment-d58fa2e60dd0)
+[](https://developer.mozilla.org/en-US/docs/Web/JavaScript/EventLoop)
+[](https://aseemrb.me/posts/weird-awesome-javascript/)
+[](https://medium.com/@Rahulx1/understanding-event-loop-call-stack-event-job-queue-in-javascript-63dcd2c71ecd)
+[](https://flaviocopes.com/javascript-event-loop/#es6-job-queue)
