@@ -4,7 +4,7 @@
 
 
 ## Javascript runtime and task scheduling
-`Javascript runtime` refers to where javascript code is executed, such as google chrome, in which case the `javascript engine` is `v8`. All JavaScript engines implement specification of the language provide by ECMAScript, such engine works inside a JS Runtime which provides **additional features** to our scripts. For example, V8 does not have `WebAPIs`, which are given by runtime. In chrome browser JS runtime, browser provides `WebAPIs`, while in `Node` runtime, `WebAPIs` are given by C++ libraries. Other broswer JS runtime features are `AJAX`, and the `DOM tree` (node runtime doesn't have them).
+`Javascript runtime` refers to where javascript code is executed, such as google chrome, in which case the `Javascript engine` is `v8`. All JavaScript engines implement specification of the language provide by ECMAScript, such engine works inside a JS Runtime which provides **additional features** to our scripts. For example, V8 does not have `WebAPIs`, which are given by runtime. In chrome browser JS runtime, browser provides `WebAPIs`, while in `Node` runtime, `WebAPIs` are given by C++ libraries. Other broswer JS runtime features are `AJAX`, and the `DOM tree` (node runtime doesn't have them).
 
 Javascript code is executed in **single thread**, but JS runtime is not: thread pool exists in JS runtime.
 
