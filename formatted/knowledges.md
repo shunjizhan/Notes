@@ -75,6 +75,12 @@ For example, the bug fails in ruby 2.6 container, but works for ruby 2.2. The co
 try to find more err msg in logs. For example, either the browser console or the terminal will print out helpful information. Further more, sometimes logs are not logged to console/terminal directly, but write to some local log file (which might be indicated on termial about which file to look for), so we can check the log file for more detailed information.
 
 
+### general idea 1
+When work with a newly downloaded library, we should treat it as a public library, which means we should take some time to go over the files, especially documentations and helper scripts, this might prevent us from rebuilding the wheel, since a great library should already provided 99% of the tool we need. 
+
+For example, when I worked on building Ciscossl, it had a INSTALL readme, which provides detailed steps for compiling and buliding the ciscossl. However, there are too many steps and many errands, so it took me a very long time to not fully succesfully built it. Later I discovered that there is actually a helper script that does everything for me, although this file is not explicitly mentioned in the readme. If I started with this helper script directly, I can save maybe 20 hours, since everyting I tried was basically to build this script, which already exist!! 
+
+
 ### empty cache when try something new
 There are may weird 'bug' doesn't logically doesn't make sense. Sometimes this is causing by cache so that our newest updated is not loaded. So if something weird happen, first we should make sure the new code is actually running, by deleting old build, empty cache, etc...
 
