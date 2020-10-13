@@ -67,7 +67,8 @@ This is my notes of some useful terminal commands & other shortcurs
 `cmd + shift + ⇧ / ⇩`      # select line from top/bottom up to current cursor
 `cmd + shift + option + ⇦ / ⇨`      # shrink/expand selection 
 `ctrl + cmd + ⇦ / ⇨`       # move tabs to left/right window (VSCode) 
-`shift + option + F`        # reformat file 
+`shift + option + F`        # reformat file (VSCode) 
+`cmd + 9`                   # jump to last tab
 
 ### Chrome
 `cmd + ⇦ / ⇨`      # go back/front 
