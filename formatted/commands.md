@@ -2,98 +2,95 @@
 This is my notes of some useful terminal commands & other shortcurs
 
 ## Terminal
-`ctrl + R`    # search previous command 
-`find [path] | grep [filename]`     # find filenames that contain [filename] in [path] 
-`ps -ax`    # list all process 
-`lsof -i :8888`     # find which process is using some port, such as 8888 
-`curl http://localhost:8888/v1/chain/get_info`      # get the webpage in terminal 
-`cat `which bundle` `   # this will first evaluation "which bundle" as a path, and cat this file 
-`du -ch`     # see size of some file 
-`cd -`       # cd to previous dir 
-`command1 | xargs command2`     # pass result from command1 to command 2 as argument 
-`chmod +x my_script.sh`         # add execution permission 
+`ctrl + R`                        # search previous command <br>
+`find [path] | grep [filename]`   # find filenames that contain [filename] in [path] <br>
+`ps -ax`                          # list all process <br>
+`lsof -i :8888`                   # find which process is using some port, such as 8888 <br>
+`curl [some_url]`                 # get the webpage in terminal <br>
+`cat `which bundle` `             # this will first evaluation "which bundle" as a path, and cat this file <br>
+`du -ch`                          # see size of some file <br>
+`cd -`                            # cd to previous dir <br>
+`command1 | xargs command2`       # pass result from command1 to command 2 as argument <br>
+`chmod +x my_script.sh`           # add execution permission <br>
+`echo "text" > file`              # write "text" to file (overwrite everything) <br>
+`echo "text" >> file`             # append "text" to the end of file <br>
 
 ## SSH
-`ssh-add -K ~/.ssh/id_rsa`  # forward identity before ssh 
-`ssh something -A`  # -A will forward identity 
+`ssh-add -K ~/.ssh/id_rsa`  # forward identity before ssh <br>
+`ssh something -A`  # -A will forward identity <br>
 
 ## Alias and Env
-### print out env variables
-`printenv` 
-
-### sudo with preserved user env variable
-`sudo -E [command]`
-`sudo --preserve-env [command]`
-
-`alias`     # show all alias 
-`alias be='bundle exec'`    # make an alias 
-`export BE='bundle exec'`    # make an environment variable. aliases are only a shell feature. Environment variables are inherited by all subprocesses 
-`declare -F`    # show all shell defined functions with details 
-`declare -f`    # show all shell defined functions (only function names) 
-`type function_name`    # show source of this function (can also used for other things like alias) 
-
+`printenv`                      # print out env variables <br>
+`sudo -E [command]`             # sudo with preserved user env variable <br>
+`sudo --preserve-env [command]`  
+`alias`                         # show all alias <br>
+`alias be='bundle exec'`        # make an alias <br>
+`export BE='bundle exec'`       # make an environment variable. aliases are only a shell feature. Environment variables are inherited by all subprocesses <br>
+`declare -F`                    # show all shell defined functions with details <br>
+`declare -f`                    # show all shell defined functions (only function names) <br>
+`type function_name`            # show source of this function (can also used for other things like alias) <br>
 
 
 ## Ruby and Rails
-`rvm list` 
-`rvm use *[--default] [ruby version number]` 
-`gem info *[gem package name]` 
-`gem env` 
-`gem list` 
-`bundle exec rspec spec`    # run all tests 
-`bundle install --force`    # force reinstall all gems 
-`bi rspec xxx.spec -e 'some test'`  # only run 'some test' in the test suites
+`rvm list` <br>
+`rvm use *[--default] [ruby version number]` <br>
+`gem info *[gem package name]` <br>
+`gem env` <br>
+`gem list` <br>
+`bundle exec rspec spec`    # run all tests <br>
+`bundle install --force`    # force reinstall all gems <br>
+`bi rspec xxx.spec -e 'some test'`  # only run 'some test' in the test suites <br>
 
 
 ## Useful Shortcut
 ### Editor
-`ctrl + shift + K`  # remove whole line 
-`ctrl + cmd + G`    # selectAll 
-`DEL (fn + BACK)`   # delete backwards 
-`cmd + DEL`         # deleteLine up to cursor 
-`ctrl + DEL`        # delete the word backwards 
-`ctrl + BACK`       # delete the word 
-`cmd + Shift + D`   # duplicate line 
-`cmd + D`           # add next 
-`cmd + R`           # search tokens 
-`cmd + Shift + R`   # search tokens globally 
-`cmd + L`           # select whole line 
-`cmd + Shift + P`   # console 
-`cmd + Shift + H`   # replace all (VSCode) 
-`cmd + ⇦ / ⇨`      # go to left/right most position 
-`cmd + ⇧ / ⇩`      # go to top/bottom position
-`option + shift + ⇦ / ⇨`   # select left/right word 
-`cmd + shift + ⇦ / ⇨`      # select line from left/right up to current cursor 
-`cmd + shift + ⇧ / ⇩`      # select line from top/bottom up to current cursor
-`cmd + shift + option + ⇦ / ⇨`      # shrink/expand selection 
-`ctrl + cmd + ⇦ / ⇨`       # move tabs to left/right window (VSCode) 
-`shift + option + F`        # reformat file (VSCode) 
-`cmd + 9`                   # jump to last tab
+`ctrl + shift + K`          # remove whole line <br>
+`ctrl + cmd + G`            # selectAll <br>
+`DEL (fn + BACK)`           # delete backwards <br>
+`cmd + DEL`                 # deleteLine up to cursor <br>
+`ctrl + DEL`                # delete the word backwards <br>
+`ctrl + BACK`               # delete the word <br>
+`cmd + Shift + D`           # duplicate line <br>
+`cmd + D`                   # add next <br>
+`cmd + R`                   # search tokens <br>
+`cmd + Shift + R`           # search tokens globally <br>
+`cmd + L`                   # select whole line <br>
+`cmd + Shift + P`           # console <br>
+`cmd + Shift + H`           # replace all (VSCode) <br>
+`cmd + ⇦ / ⇨`              # go to left/right most position <br>
+`cmd + ⇧ / ⇩`              # go to top/bottom position<br>
+`option + shift + ⇦ / ⇨`   # select left/right word <br>
+`cmd + shift + ⇦ / ⇨`      # select line from left/right up to current cursor <br>
+`cmd + shift + ⇧ / ⇩`      # select line from top/bottom up to current cursor<br>
+`cmd + shift + option + ⇦ / ⇨`      # shrink/expand selection <br>
+`ctrl + cmd + ⇦ / ⇨`       # move tabs to left/right window (VSCode) <br>
+`shift + option + F`        # reformat file (VSCode) <br>
+`cmd + 9`                   # jump to last tab <br>
 
 ### Chrome
-`cmd + ⇦ / ⇨`      # go back/front 
+`cmd + ⇦ / ⇨`      # go back/front <br>
 
 ### General
-`cmd + W`           # close current tab 
-`cmd + Shift + W`   # close all 
-`cmd + ,`           # go to options 
-`cmd + ~`           # switch window of the same app (doesn't work in full screen mode) 
+`cmd + W`           # close current tab <br>
+`cmd + Shift + W`   # close all <br>
+`cmd + ,`           # go to options <br>
+`cmd + ~`           # switch window of the same app (doesn't work in full screen mode) <br>
 
 ### MAC
-`cmd + Option + D`  # toggle Mac dock 
-`cmd + shift + G`   # (in finder) go to folder 
-`ctrl + ⇦ / ⇨`     # switch window 
-`ctrl + ⇧`         # show windows overview 
-`cmd + ctrl + q`    # sleep 
+`cmd + Option + D`  # toggle Mac dock <br>
+`cmd + shift + G`   # (in finder) go to folder <br>
+`ctrl + ⇦ / ⇨`     # switch window <br>
+`ctrl + ⇧`          # show windows overview <br>
+`cmd + ctrl + q`    # sleep <br>
 
 ### Vim
-`gw` auto format commit msg (after selected all the lines) 
-`dd` to cut the line and `p` to paste 
+`gw` auto format commit msg (after selected all the lines) <br>
+`dd` to cut the line and `p` to paste <br>
 
 
 ## Git
 ### get line history of line XXX of a file YYY
-`git log -LXXX,+1:'path_to_YYY'`
+`git log -LXXX,+1:'path_to_YYY'` <br>
 `git log -L169,+1:'package.json'`   # example
 
 ### rebase interactively top n commit, @ is shortcut for HEAD
@@ -103,7 +100,7 @@ This is my notes of some useful terminal commands & other shortcurs
 `git reset --soft HEAD~1`   
 
 ### git diff between two branches (of specific file)
-`git diff [branch_1]..branch_2 [-- filename]`   
+`git diff [branch_1]..branch_2 [-- filename]`   <br>
 `git diff origin/ruby_2_3..origin/ruby_2_2 -- lib/ostruct.rb`   # example
 
 ### squash current commit to previous commit

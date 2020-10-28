@@ -49,6 +49,21 @@ end();
 */
 ```
 
+comparison of microtask and callbacks (TODO: still need more understanding)
+```js
+// 不会让浏览器卡死
+function foo() {
+  setTimeout(foo, 0);
+}
+foo();
+
+// 会让浏览器卡死
+function foo() {
+  return Promise.resolve().then(foo);
+}
+foo();
+```
+
 
 ## scopes
 Each function creates a new `local scope`, which is a `function scope`. Every variable declared in this scope is a `local variable`. 
