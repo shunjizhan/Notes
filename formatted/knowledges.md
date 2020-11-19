@@ -74,6 +74,9 @@ For example, the bug fails in ruby 2.6 container, but works for ruby 2.2. The co
 ### debug idea 2
 try to find more err msg in logs. For example, either the browser console or the terminal will print out helpful information. Further more, sometimes logs are not logged to console/terminal directly, but write to some local log file (which might be indicated on termial about which file to look for), so we can check the log file for more detailed information.
 
+## debug idea 3
+one of the most often, yet easiest bug is, mis-spelling. Sometimes this is caused by auto-complete. For example, once I was really confused why getting error saying all props are missing in prop validation, the error was caused by that I wrote `XXX.protoTypes` instead of `XXX.propTypes`
+
 
 ### general idea 1
 When work with a newly downloaded library, we should treat it as a public library, which means we should take some time to go over the files, especially documentations and helper scripts, this might prevent us from rebuilding the wheel, since a great library should already provided 99% of the tool we need. 
