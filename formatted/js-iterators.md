@@ -4,7 +4,7 @@
 
 ## basic iterator concepts
 An `iterable` is a data structure that makes its elements accessible to the public by implementing a method whose key is `Symbol.iterator`. That method is a factory for iterators. That is, it will create `iterators`. An `iterator` is a pointer for traversing the elements of a data structure.
-```js
+```ts
 const iterable = {
   [Symbol.iterator]() {
     let step = 0;
@@ -48,7 +48,7 @@ The `for-of` loops takes an `iterable`, and creates its `iterator`. It keeps on 
 
 
 ### destructuring of arrays
-```js
+```ts
 const array = ['a', 'b', 'c', 'd', 'e'];
 const [first, ,third, ,last] = array;
 
@@ -65,7 +65,7 @@ const last = iterator.next().value
 
 
 ### the spread operator (...)
-```js
+```ts
 const array = ['a', 'b', 'c', 'd', 'e'];
 const newArray = [1, ...array, 2, 3];
 
@@ -97,7 +97,7 @@ ES6 introduced a new way of working with functions and `iterators` in the form o
 - `Generators` are a special class of functions that simplify the task of writing iterators.
 - A `generator` is a function that produces a sequence of results instead of a single value, i.e you generate ​a series of values.
 
-```js
+```ts
 function * generatorFunc() {
   console.log('1');
   yield '2';
@@ -111,7 +111,7 @@ console.log(generatorObject.next().value);    // => undefined
 ```
 
 We can also return from a `generator`. However, return sets the done property to true after which the `generator` cannot generate any more values.
-```js
+```ts
 function *  generatorFunc() {
   yield 'a';
   return 'b';   // Generator ends here.
@@ -122,7 +122,7 @@ function *  generatorFunc() {
 
 ## use of generators
 We can largely simply the iterable seen before:
-```js
+```ts
 const iterable = {
   [Symbol.iterator]() {
     let step = 0;
@@ -167,7 +167,7 @@ for (const val of iterable()) {
 ```
 
 It’s possible to create `generators` that never end, for example an `infinite data streams of power series`
-```js
+```ts
 function * powerSeries(base, power) {
   while(true) {
     yield Math.pow(base, power);
